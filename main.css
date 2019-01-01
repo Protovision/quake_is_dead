@@ -28,8 +28,12 @@ body table td,body table th {
 	border: thin solid;
 	padding: 0.5em;
 }
-figure figcaption {
+body figure figcaption {
 	text-align: center;
+}
+body blockquote {
+	border-left: thick solid DarkRed;
+	padding: 0 1em;
 }
 body>header {
 	padding: 1em;
