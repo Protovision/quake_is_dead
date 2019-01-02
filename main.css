@@ -8,55 +8,59 @@ body {
 	background-attachment: fixed;
 	line-height: 1.5;
 }
-body a {
+a {
 	color: DarkRed;
 	text-decoration: none;
 }
-body a:hover {
+a:hover {
 	text-decoration: underline;
 }
-body ul {
+ul {
 	padding: 0 1.5em;
 	list-style-type: none;
 }
-body table {
+table {
 	margin: 0 auto;
 	width: 75%;
 	border-collapse: collapse;
 }
-body table td,body table th {
+table td,table th {
 	border: thin solid;
 	padding: 0.5em;
 }
-body figure figcaption {
+figure {
+	margin: 1em;
+}
+figcaption {
 	text-align: center;
 }
-body blockquote {
+blockquote {
+	margin: 0;
 	border-left: thick solid DarkRed;
 	padding: 0 1em;
 }
-body>header {
+header {
 	padding: 1em;
 	text-align: center;
 }
-body>main {
+main {
 	margin: 0 12.5%;
 	padding: 1em;
 	background-color: rgba(0, 0, 0, 0.8);
 	border: thin solid DarkRed;
 }
-body>main>h1 {
+h1 {
 	text-align: center;	
 }
-body>footer {
+footer {
 	margin: 0 12.5%;
 	padding: 1em;
 }
 @media screen and (max-width: 800px) {
-	body>main {
+	main {
 		margin: 0 1em;
 	}
-	body>footer {
+	footer {
 		margin: 0 1em;
 	}
 }
@@ -70,33 +74,33 @@ body>footer {
 		background-color: transparent;
 		background-image: none;
 	}
-	body table {
+	table {
 		width: auto;
 	}
-	body table td,body table th {
+	table td,table th {
 		border: thick solid Gray;
 	}
-	body>header {
+	header {
 		display: none;
 	}
-	body>main {
+	main {
 		margin: 0;
 		border: none;
 		padding: 3em;
 		background-color: transparent;
 	}
-	body>footer {
+	footer {
 		display: none;
 	}
-	body main p {
+	p {
 		page-break-inside: avoid;
 		page-break-before: auto;
 		page-break-after: auto;
 	}
-	body main h1 {
+	h1 {
 		page-break-before: always;
 	}
-	body main h1:first-of-type {
+	main h1:first-of-type {
 		page-break-before: avoid;
 	}
 }
