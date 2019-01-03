@@ -39,6 +39,9 @@ blockquote {
 	border-left: thick solid DarkRed;
 	padding: 0 1em;
 }
+p {
+	text-indent: 1em;
+}
 header {
 	padding: 1em;
 	text-align: center;
@@ -56,6 +59,18 @@ footer {
 	margin: 0 12.5%;
 	padding: 1em;
 }
+#background_video_player {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -999;
+	transform: translate(-50%, -50%);
+	filter: brightness(50%);
+}
 @media screen and (max-width: 800px) {
 	main {
 		margin: 0 1em;
@@ -67,6 +82,9 @@ footer {
 @media print {
 	@page {
 		margin: 0.5in;
+	}
+	#background_video_player {
+		display: none;
 	}
 	body {
 		margin: 0;

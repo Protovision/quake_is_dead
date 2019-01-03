@@ -10,9 +10,14 @@
 		<link rel="stylesheet" href="main.css">
 	</head>
 	<body>
+		<video id="background_video_player" autoplay muted loop src="fire_background.webm"></video>
+		<audio id="background_music_player" autoplay loop src="background_music.mp3"></audio>
 		<header>
 			<h1>Quake is Dead</h1>
 			<p>A blog on the state of multiplayer first-person shooters.</p>
+			<a id="background_music_toggle" href="#!">Toggle background music</a>
+			<div style="display: inline-block; width: 3em;"></div>
+			<a id="background_video_toggle" href="#!">Toggle background video</a>
 		</header>
 		<main>
 			<h1>Entries</h1>
@@ -25,5 +30,6 @@
 		<footer>
 			<address><a href="mailto:markswoope@outlook.com">Email Mark</a></address>
 		</footer>
+		<script src="main.js"></script>
 	</body>
 </html>
