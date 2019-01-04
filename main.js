@@ -76,6 +76,7 @@
 	}
 	html_elements.toggle_background_music.onclick = function() {
 		set_background_music(local_storage.background_music_enabled = !local_storage.background_music_enabled);
+		return false;
 	}
 	function set_background_video(bool) {
 		if (bool) {
@@ -96,6 +97,7 @@
 	}
 	html_elements.toggle_background_video.onclick = function() {
 		set_background_video(local_storage.background_video_enabled = !local_storage.background_video_enabled);
+		return false;
 	}
 	function open_entry(file) {
 		var request = new XMLHttpRequest();
