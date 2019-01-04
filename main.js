@@ -120,6 +120,7 @@
 			}
 		});
 		html_elements.main.appendChild(fragment);
+		window.location.hash = "";
 		return false;
 	}
 	window.onbeforeunload = function() {
