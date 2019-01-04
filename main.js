@@ -65,11 +65,11 @@
 			html_elements.background_music_player.play();
 			html_elements.toggle_background_music.textContent = "Disable background music";
 		} else {
+			local_storage.background_music_time = html_elements.background_music_player.currentTime;
 			html_elements.background_music_player.pause();
 			html_elements.background_music_player.preload = "none";
 			html_elements.background_music_player.autoplay = false;
 			html_elements.background_music_player.loop = false;
-			local_storage.background_music_time = html_elements.background_music_player.currentTime;
 			html_elements.background_music_player.muted = true;
 			html_elements.toggle_background_music.textContent = "Enable background music";
 		}
@@ -126,7 +126,7 @@
 	window.onbeforeunload = function() {
 		localStorage.setItem("background_music_enabled", String(local_storage.background_music_enabled));
 		localStorage.setItem("background_video_enabled", String(local_storage.background_video_enabled));
-		localStorage.setItem("background_music_time", String(local_storage.background_music_time));
+		localStorage.setItem("background_music_time", String(html_elements.background_music_player.currentTime));
 	}
 	set_background_music(local_storage.background_music_enabled);
 	set_background_video(local_storage.background_video_enabled);
