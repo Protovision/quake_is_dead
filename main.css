@@ -59,6 +59,15 @@ footer {
 	margin: 0 12.5%;
 	padding: 1em;
 }
+#website_controls {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#website_controls>li {
+	display: inline-block;
+	padding: 0 1em;
+}
 #background_video_player {
 	position: fixed;
 	top: 50%;
@@ -70,6 +79,9 @@ footer {
 	z-index: -999;
 	transform: translate(-50%, -50%);
 	filter: brightness(50%);
+}
+#blog_entries {
+	text-align: center;
 }
 @media screen and (max-width: 800px) {
 	main {

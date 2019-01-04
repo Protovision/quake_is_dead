@@ -10,22 +10,17 @@
 		<link rel="stylesheet" href="main.css">
 	</head>
 	<body>
-		<video id="background_video_player" autoplay muted loop src="fire_background.webm"></video>
-		<audio id="background_music_player" autoplay loop src="background_music.mp3"></audio>
 		<header>
-			<h1>Quake is Dead</h1>
+			<video id="background_video_player" src="background_video.webm" preload="none" muted></video>
+			<audio id="background_music_player" src="background_music.mp3" preload="none" muted></audio>
+			<h1><a id="go_to_index" href="#!">Quake is Dead</a></h1>
 			<p>A blog on the state of multiplayer first-person shooters.</p>
-			<a id="background_music_toggle" href="#!">Toggle background music</a>
-			<div style="display: inline-block; width: 3em;"></div>
-			<a id="background_video_toggle" href="#!">Toggle background video</a>
-		</header>
-		<main>
-			<h1>Entries</h1>
-			<ul style="text-align: center;">
-				<li><a href="01_01_2019.html">January 1, 2019</a></li>
-				<li><a href="12_31_2018.html">December 31, 2018</a></li>
-				<li><a href="12_19_2018.html">December 19, 2018</a></li>
+			<ul id="website_controls">
+				<li><a id="toggle_background_music" href="#!">Enable background music</a></li>
+				<li><a id="toggle_background_video" href="#!">Enable background video</a></li>
 			</ul>
+		</header>
+		<main id="main">
 		</main>
 		<footer>
 			<address><a href="mailto:markswoope@outlook.com">Email Mark</a></address>

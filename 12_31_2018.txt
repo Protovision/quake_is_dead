@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Quake is Dead - 12/31/2018</title>
-		<meta name="author" content="Mark Swoope">
-		<link rel="stylesheet" href="normalize.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lustria">
-		<link rel="stylesheet" href="main.css">
-	</head>
-	<body>
-		<video id="background_video_player" autoplay muted loop src="fire_background.webm"></video>
-		<audio id="background_music_player" autoplay loop src="background_music.mp3"></audio>
-		<header>
-			<h1><a href="index.html">Quake is Dead</a></h1>
-			<p>A blog on the state of multiplayer first-person shooters.</p>
-			<a id="background_music_toggle" href="#!">Toggle background music</a>
-			<div style="display: inline-block; width: 3em;"></div>
-			<a id="background_video_toggle" href="#!">Toggle background video</a>
-		</header>
-		<main>
 			<h1>Pessimism for all FPS</h1>
 			<p>I uninstalled Paladins. I still recommend the game to other people, but not for myself at this point because I know that what I want for myself from an FPS is fundamentally different from what most people want or are comfortable with.</p>
 			<p>The sheer deciding factor for victory, the most important element that I would prefer to be required and developed by all players is individual skill. This is why, at bottom, I cannot play team based games without taking periodic vacations of solitude from them lest I lose my sanity for being dragged down by the most mediocre of players or being yelled at by the resentful controls freaks who think they know the best way to play the game. But the most frustrating aspect of all team based shooters for me is the fact that squads/parties/groups will always have higher winrates against solo players and we have yet to see a matchmaking algorithm offset this phenomenon in my 2 decades of playing multiplayer shooters. I do not care that the latest update of Paladins is weaning off burst meta by removing cauterize from loadouts and introducing more self-healing cards. I do not care anymore for the newest prettiest cosmetics. The existing bugs do not bother me and the bugs they are fixing does not make me excited, bug fixing is to be expected and it's a requirement: it is not something to be happy about like one is getting a treat or reward from it. The one thing that has never changed about Paladins for me is the parties giving really one-sided games against solo players. Whether the fault is matchmaking or the game allowing parties to go against solo players makes no difference, the end result is bad games.</p>
@@ -53,10 +31,3 @@
 			<p>Probably the only Youtube personality who reviews Paladins and who I can agree with is Helvian. Unlike the others, he actually has a respectable number of hours put into the game and it shows from the clear knowledge he demonstrated about the game in his video "Why I hate paladins". In that video: he revealed how the champion leaderboard is exploitable by purposely throwing ranked games when you're not on your main, he called out the illusion of choice when it came to loadout building, the bugs, the bots, the poor design of maps, and the lack of documentation and tutorials about the game for newer players: you know, stuff that actually matters instead of rants about battlepasses and ugly skins.</p>
 			<p>Even though I've spent $300 dollars on skins in Paladins, I really do not see how Lian having a useless scope on her christmas skin and a missing chair in her sitting emote can be a crisis on reddit when more important things like FPS drops and matchmaking are still problematic. Why is everyone on reddit so worked up about Terminus bugs when 75% of the playerbase do not use him according to thebettermeta.com? Yes I know thebettermeta only records ranked games, but think of how much less people use him in casual games since nobody likes playing frontline in casual? Reddit's tendancy is to empathize with all who suffer despite not having any relationship or real understanding of the sufferer. They just don't want to feel left out from any reason to scream and protest because that's their main power and vehicle for shaping world events. The real sufferers still remain forgotten and their voices drowned out by self-appointed spokesmen.</p>
 			<p>In our case, the people who actually play the game may never post on the forums and those who do may never have the talent to post anything eye-catching enough to reach the top of the subreddit when only the bad-tasting memes recycled from last year reach the top. If I had my own video game, I would not have an official subreddit, it would have no connection or communication with any 3rd party social networking platform whatsoever: not reddit, not twitter, not discord, not facebook, nothing. All feedback would be given from an in-game UI. If there would be any official online forum, all users must verify their in-game names. Nobody with less than 40 hours of gameplay would be allowed to post.</p>
-		</main>
-		<footer>
-			<address><a href="mailto:markswoope@outlook.com">Email Mark</a></address>
-		</footer>	
-		<script src="main.js"></script>
-	</body>
-</html>
