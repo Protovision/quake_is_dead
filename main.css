@@ -8,12 +8,20 @@ body {
 	background-attachment: fixed;
 	line-height: 1.5;
 }
+::selection {
+	color: White;
+	background-color: DarkRed;
+}
 a {
 	color: DarkRed;
 	text-decoration: none;
+	outline: none;
 }
-a:hover {
+a:hover,a:focus{
 	text-decoration: underline;
+}
+a:active {
+	color: DarkOrange;
 }
 ul {
 	padding: 0 1.5em;
@@ -79,9 +87,6 @@ footer {
 	z-index: -999;
 	transform: translate(-50%, -50%);
 	filter: brightness(50%);
-}
-#blog_entries {
-	text-align: center;
 }
 @media screen and (max-width: 800px) {
 	main {
