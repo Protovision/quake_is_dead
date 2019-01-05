@@ -15,13 +15,13 @@
 	html_elements.main = document.getElementById("main");
 	local_storage.background_music_enabled = localStorage.getItem("background_music_enabled");
 	if (local_storage.background_music_enabled == null) {
-		local_storage.background_music_enabled = true;
+		local_storage.background_music_enabled = false;
 	} else {
 		local_storage.background_music_enabled = (local_storage.background_music_enabled == "true");
 	}
 	local_storage.background_video_enabled = localStorage.getItem("background_video_enabled");
 	if (local_storage.background_video_enabled == null) {
-		local_storage.background_video_enabled = false;
+		local_storage.background_video_enabled = true;
 	} else {
 		local_storage.background_video_enabled = (local_storage.background_video_enabled == "true");
 	}
