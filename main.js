@@ -15,7 +15,7 @@
 	html_elements.main = document.getElementById("main");
 	local_storage.background_music_enabled = localStorage.getItem("background_music_enabled");
 	if (local_storage.background_music_enabled == null) {
-		local_storage.background_music_enabled = false;
+		local_storage.background_music_enabled = true;
 	} else {
 		local_storage.background_music_enabled = (local_storage.background_music_enabled == "true");
 	}
@@ -58,7 +58,6 @@
 	})();
 	function set_background_music(bool) {
 		if (bool) {
-			html_elements.background_music_player.preload = "auto";
 			html_elements.background_music_player.autoplay = true;
 			html_elements.background_music_player.loop = true;
 			html_elements.background_music_player.muted = false;
@@ -68,7 +67,6 @@
 		} else {
 			local_storage.background_music_time = html_elements.background_music_player.currentTime;
 			html_elements.background_music_player.pause();
-			html_elements.background_music_player.preload = "none";
 			html_elements.background_music_player.autoplay = false;
 			html_elements.background_music_player.loop = false;
 			html_elements.background_music_player.muted = true;
@@ -81,7 +79,6 @@
 	}
 	function set_background_video(bool) {
 		if (bool) {
-			html_elements.background_video_player.preload = "auto";
 			html_elements.background_video_player.autoplay = true;
 			html_elements.background_video_player.loop = true;
 			html_elements.background_video_player.play();
@@ -89,7 +86,6 @@
 			html_elements.toggle_background_video.textContent = "Disable background video";
 		} else {
 			html_elements.background_video_player.pause();
-			html_elements.background_video_player.preload = "none";
 			html_elements.background_video_player.autoplay = false;
 			html_elements.background_video_player.loop = false;
 			html_elements.background_video_player.style.display = "none";
