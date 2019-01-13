@@ -1,5 +1,6 @@
 (function() {
 	var blog_entries = [
+		[ "01_12_2019.txt", "January 12, 2019" ],
 		[ "01_04_2019.txt", "January 4, 2019" ],
 		[ "01_01_2019.txt", "January 1, 2019" ],
 		[ "12_31_2018.txt", "December 31, 2018" ],
