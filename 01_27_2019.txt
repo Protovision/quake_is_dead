@@ -34,4 +34,12 @@
 	<li>Always equip damage abilities and damage immunity abilities even if they are not for your class. Blast arrow, ice block, and ghost walk are the best abilities in the game.</li>
 	<li>Chicken runes are worthless, always shard them and do not waste your rune slots on them.</li>
 	<li>During end game when there are no forges left and your rune slots are not filled, try opening chests from unlooted houses. You have a chance of getting a rune drop.</li>
+	<li>Do not place too much value into the slug rifle. I've seen streamers shard a golden fire venom pistol while keeping their green slug rifle. Slug rifle is good but it's not that good. Know the value of your weapons and do not just base your judgements about a weapon by how it feels and sounds when you fire it. Learn how to use the less conventional weapons that are also powerful, this includes: the axe, the frost staff, the venom pistol, and the stone spear.</li>
+	<li>Do not mount up in combat out of cover, the enemy will just peek and shoot you off your mount, granting them free damage on you and thrawting your escape. Just because you don't see the enemy doesn't mean they aren't looking at you through 3rd person.</li>
+	<li>Always play with headphones and music turned off unless you are a god like idiotmouse</li>
+	<li>If an enemy attacks you while you are attacking a loot goblin, you must let the loot goblin go. Do not attempt to finish off the loot goblin no matter how close you are to killing it. Enemies must be taken seriously.</li>
+	<li>During early and mid-game you have no reason to be looking for combat if your shards are maxed out and there are still forges available.</li>
+	<li>SMG, AR, and Bolt Staff are trash, even at legendary tiers.</li>
+	<li>Learn how to <q>double pump</q> with certain weapons pairs like Frost Staff and Slug Rifle</li>
+	<li>You can do everything correctly and still lose due to the RNG nature of Battle Royale.</li>
 </ul>
