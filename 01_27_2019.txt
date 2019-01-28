@@ -1,0 +1,37 @@
+<style>
+	ul { list-style-type: square; }
+</style>
+<h1>Realm Royale</h1>
+<p>The playerbase has recently been optimistic about this game, they perceive that after a few seasons of bad design changes and low active players that the game is picking up once again after the latest updates and marketing efforts.</p>
+<p>I do concede that if I were to choose a Battle Royale game to play, it would be this one and I have been playing this lately as a substitute/replacement for Paladins. For the one thing that Battle Royale offers that other shooter games do not is solo-only play with only one victor per match; it's still a distant variation but it's one of the closest things we have to a deathmatch game mode today.</p>
+<p>Unfortunately, that's the only thing about these games which conforms to my taste. Everything else about Battle Royale is contrary to fast-paced action, raw intincts and mechanical skill, and mobility. As I play Realm Royale, I'm beginning to understand that aiming is the least important part of this game, or at least it's the easiest part of this game since hitboxes are huge and movement/dodging is slow just like in Paladins. It is clear that to play Realm Royale correctly, one must be on a tight schedule running around the whole map looting and forging as much as possible, there is no time to waste getting caught up in pointless combat when there are potions and runes to craft. Unless you have spare shards and you want to gamble to see if you can get a legendary version of your class weapon, you should only craft your weapon once or, in the case of having bad luck and crafting the worst weapon of your class, a couple more times until you get the class weapon that is not the worst of the 3 class weapons that you can forge. Other than that, you should always visit as many forges as possible and forge 1 set of armor potions and 1 rune at every forge. Do not bother forging health potions because they are too easy to obtain from looting houses or bodies. Do not bother forging abilities until late game because their cooldowns are so high that you will only be able to use your ability once in combat whether that ability is of common rarity or legendary rarity. The difference between ability rarities, if I understand correctly, is only a 10% cooldown reduction per tier; that's it, rarer abilities do not grant you more potent effects.</p>
+<p>Everytime I lose a Realm Royale game, I am never impressed or mystified about my death. Every loss comes down to one of the following reasons:</p>
+<ul>
+	<li>The enemy player had a better weapon than me</li>
+	<li>The enemy player had high ground</li>
+	<li>The enemy player had right-hand advantage</li>
+	<li>The enemy player kept me dismounted from the incoming fog</li>
+</ul>
+<p>These are logical reasons which can be avoided by always being conscious about one's positioning and forging schedules. They can be avoided. However, my losses may indirectly be caused by my natural bad luck because of the following circumstances peculiar to me:</p>
+<ul>
+	<li>After landing, I visit 3 empty buildings and I never find a weapon</li>
+	<li>I craft the same rune 3 forges in a row</li>
+	<li>I craft the same epic weapon 3 forges in a row</li>
+	<li>Loot goblins I kill drop runes which I already have</li>
+	<li>Airdrop chests drop runes which I already have</li>
+</ul>
+<p>These are supposedly based on RNG, but I perceive that they happen way to often to myself. It may be the case that the game gives better looting outcomes to newer players and slowly worsens these outcomes for more veteran players. There is no gaurantee that Realm Royale gives players equal luck.</p>
+<p>50% of Battle Royale is based on luck which I am unable to control, the other 50% is largely composed of positioning and time management. A very small percentage is allocated to aiming and combat for the fact that there is very little combat happening in Battle Royale games.</p>
+<p>Guidelines for myself that I learned from experience playing Realm Royale:</p>
+<ul>
+	<li>At the start of the game, land on the edge of the outer zone. Landing in the inner zone prevents you from visiting as many forges as someone who landed in the outer zone by late game.</li>
+	<li>When the fog starts moving, you should begin crafting at the forge that is in the outer zone but closest to the edge of the inner zone.</li>
+	<li>During combat, always have cover. Avoid all combat situations where you will not have cover, fall back if possible until you find an object that you can fight behind.</li>
+	<li>During combat, peek to shoot. Never peek on left-side, always have right-side advantage.</li>
+	<li>Peek to shoot combat favors the enemy with the burstier weapon. If your weapon deals less damage per shot than the enemy's weapon, your only hope of killing them is to close the distance and attack them directly without either of you having cover. Only do this if the DPS of your weapon exceeds the DPS of the enemy's weapon even though your weapon deals less damage per shot.</li>
+	<li>Do not attempt to chase or close the distance on an enemy if they have the same movement speed as you and/or your movement ability is on cooldown. They will simply fall back to another object to peek and shoot behind while you are caught in the open.</li>
+	<li>Do not flank if the enemy knows you are near. Footsteps are way too loud and the enemy can simply rotate around an obstacle such that both of you are moving in a circle.</li>
+	<li>Always equip damage abilities and damage immunity abilities even if they are not for your class. Blast arrow, ice block, and ghost walk are the best abilities in the game.</li>
+	<li>Chicken runes are worthless, always shard them and do not waste your rune slots on them.</li>
+	<li>During end game when there are no forges left and your rune slots are not filled, try opening chests from unlooted houses. You have a chance of getting a rune drop.</li>
+</ul>
