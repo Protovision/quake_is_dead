@@ -1,0 +1,14 @@
+<h1>Peeker's advantage</h1>
+<p>I've been mentioning peeker's advantage and right hand advantage in previous posts so I will attempt to explain them here.</p>
+<p>Peeker's advantage happens against you when the enemy peeks from behind a wall, fires a shot, and unpeeks back into cover all within a time frame that is less than your ping. The enemy's body is never seen or exposed and you will take damage without being able to return a shot:</p>
+<video style="display: block; margin: 0 auto; width: 100%; height: 100%; max-width: 640px; max-height: 480px;" width="640" height="480" controls>
+	<source type="video/mp4" src="MeanSnivelingGalapagossealion-mobile.mp4">
+</video>
+<p>Another advantage related to the above example is known as <q>right hand advantage</q>, many shooter games position the weapon on the right side of the player's model therefore peek firing from the right side exposes a smaller portion of your model than peek firing from the left side. This decreases your peek time and decreases the minimum enemy ping required to gain peeker's advantage against them.</p>
+<p>This is the most effective way to play any shooter game. It is a tactical imperative and a technological exploit.</p>
+<p>Possible ways a game can mitigate this abusive playstyle is to increase the time it takes to accelerate to full velocity when strafing, prevent players from connecting if their ping is too high, introduce artificial lag to low ping players, decrease the damage of high burst weapons, position the muzzle of all weapons to actually fire from the center of the player's mass even if the gun model appears to be on the left or right side.</p>
+<p>There may also be a technical solution in the netcode to prevent peeker's advantage from taking place.</p>
+
+<!--
+<div style='position:relative; padding-bottom:calc(56.25% + 44px)'><iframe src='https://gfycat.com/ifr/MeanSnivelingGalapagossealion?autoplay=0' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div><p> <a href="https://gfycat.com/meansnivelinggalapagossealion">via Gfycat</a></p>
+-->
