@@ -1,0 +1,187 @@
+<h1>Balancing TTK</h1>
+<p>In Quake 3 and Quake Live, every player has a quantity of health and armor. Every time a player gets shot, that player's health and armor decreases according to the following algorithm:</p>
+<figure>
+	<pre><code>armor_damage&nbsp;=&nbsp;ceil(damage&nbsp;*&nbsp;0.66);<br>if&nbsp;(armor_damage&nbsp;&gt;&nbsp;armor)<br>&nbsp;&nbsp;&nbsp;&nbsp;armor_damage&nbsp;=&nbsp;armor;<br>armor&nbsp;-=&nbsp;armor_damage;<br>health_damage&nbsp;=&nbsp;damage&nbsp;-&nbsp;armor_damage;<br>if&nbsp;(health_damage&nbsp;&gt;&nbsp;health)<br>&nbsp;&nbsp;&nbsp;&nbsp;health_damage&nbsp;=&nbsp;health;<br>health&nbsp;-=&nbsp;health_damage;<br></code></pre>
+</figure>
+<p>You may verify this by checking the <code>G_Damage</code> and <code>CheckArmor</code> functions in <kbd>code/game/g_combat.c</kbd> of the source code to Quake III Arena.</p>
+<!--<p>In Quake 3, Quake 4, and Quake Live, players spawn with 125 health and 0 armor. Any player whose health is greater than 100 will lose 1 health per second back down to 100 health.</p>-->
+<p>In the following tables, the Time to Kill (TTK) is calculated for each weapon on a target with no stack (100 health, 0 armor) and a target with full stack (200 health, 200 armor). TTK is calculated with the first shot from the weapon beginning at the 0 second mark. A TTK equal to zero means that the weapon can kill in one shot.</p>
+<figure>
+	<figcaption>Quake III weapon statistics</figcaption>
+	<table>
+		<tr>
+			<th>Weapon</th>
+			<th>Damage/Shot</th>
+			<th>Shots/Second</th>
+			<th>TTK (No stack)
+			<th>TTK (Full stack)</th>
+		</tr>
+		<tr>
+			<td>Gauntlet</td>
+			<td>50</td>
+			<td>2.5</td>
+			<td>0.4</td>
+			<td>2.8</td>
+		</tr>
+		<tr>
+			<td>Machinegun</td>
+			<td>7</td>
+			<td>10</td>
+			<td>1.4</td>
+			<td>5.7</td>
+		</tr>
+		<tr>
+			<td>Shotgun</td>
+			<td>110</td>
+			<td>1</td>
+			<td>0</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>Grenade Launcher</td>
+			<td>100</td>
+			<td>1.25</td>
+			<td>0</td>
+			<td>2.4</td>
+		</tr>
+		<tr>
+			<td>Rocket Launcher</td>
+			<td>100</td>
+			<td>1.25</td>
+			<td>0</td>
+			<td>2.4</td>
+		</tr>
+		<tr>
+			<td>Lightning Gun</td>
+			<td>8</td>
+			<td>20</td>
+			<td>0.6</td>
+			<td>2.45</td>
+		</tr>
+		<tr>
+			<td>Plasma Gun</td>
+			<td>20</td>
+			<td>10</td>
+			<td>0.4</td>
+			<td>1.9</td>
+		</tr>
+		<tr>
+			<td>Railgun</td>
+			<td>100</td>
+			<td>0.666</td>
+			<td>0</td>
+			<td>4.5</td>
+		</tr>
+	</table>
+</figure>
+<p>The average TTK for non-stacked targets is 0.35 seconds; for full-stacked targets, it's 3.14 seconds. This might seem low, but high-mobility and small hitboxes in Quake allows for dodging shots.</p>
+<figure>
+	<figcaption>Quake Live weapon statistics</figcaption>
+	<table>
+		<tr>
+			<th>Weapon</th>
+			<th>Damage/Shot</th>
+			<th>Shots/Second</th>
+			<th>TTK (No stack)</th>
+			<th>TTK (Full stack)</th>
+		</tr>
+		<tr>
+			<td>Gauntlet</td>
+			<td>50</td>
+			<td>2.5</td>
+			<td>0.4</td>
+			<td>2.8</td>
+		</tr>
+		<tr>
+			<td>Machinegun</td>
+			<td>5</td>
+			<td>10</td>
+			<td>1.9</td>
+			<td>7.9</td>
+		</tr>
+		<tr>
+			<td>Shotgun</td>
+			<td>100</td>
+			<td>1</td>
+			<td>0</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>Grenade Launcher</td>
+			<td>100</td>
+			<td>1.25</td>
+			<td>0</td>
+			<td>2.4</td>
+		</tr>
+		<tr>
+			<td>Rocket Launcher</td>
+			<td>100</td>
+			<td>1.25</td>
+			<td>0</td>
+			<td>2.4</td>
+		</tr>
+		<tr>
+			<td>Lightning Gun</td>
+			<td>6</td>
+			<td>20</td>
+			<td>0.8</td>
+			<td>3.3</td>
+		</tr>
+		<tr>
+			<td>Plasma Gun</td>
+			<td>20</td>
+			<td>10</td>
+			<td>0.4</td>
+			<td>1.9</td>
+		</tr>
+		<tr>
+			<td>Railgun</td>
+			<td>80</td>
+			<td>0.666</td>
+			<td>1.5</td>
+			<td>6</td>
+		</tr>
+	</table>
+</figure>
+<p>The average TTK for non-stacked targets in Quake Live is 0.625 seconds. The average TTK for full-stacked targets in Quake Live is 3.71 seconds.</p>
+<p>The average human reaction time is between 0.25 seconds and 0.35 seconds. The TTK for non-stacked players in Quake 3 is equal to the upper bound of the average human reaction time, the TTK for fully-stacked players in Quake 3 is equal to pi. John Carmack balanced these weapons with beautiful numbers.</p>
+<p>If I was to make an arena shooter with similar weapons, I could start by also making the average TTK against non-stacked players equal to 0.35s; but the average TTK against fully-stacked players could be ten times that: 3.5s. (Average TTK here means average with respect to all weapons assuming perfect accuracy)</p>
+<p>How many weapons should this new game have? First let's consider the categories of weapons by their damage and firing rate:</p>
+<ul>
+	<li>Low damage, low firing rate</li>
+	<li>Low damage, moderate firing rate</li>
+	<li>Low damage, high firing rate</li>
+	<li>Moderate damage, low firing rate</li>
+	<li>Moderate damage, moderate firing rate</li>
+	<li>Moderate damage, high firing rate</li>
+	<li>High damage, low firing rate</li>
+	<li>High damage, moderate firing rate</li>
+	<li>High damage, high firing rate</li>
+</ul>
+<p>Some of these categories shouldn't be in the game, such as: high damage/high firing rate and low damage/low firing rate. The 3 categories of weapons that should be in the game are:</p>
+<ul>
+	<li>Low damage, high firing rate</li>
+	<li>Moderate damage, moderate firing rate</li>
+	<li>High damage, low firing rate</li>
+</ul>
+<!--
+<p>Shall a sniper rifle be included? It must have heavy restrictions: extremely low firing rate (probably at most 1 shot every 2 seconds), projectile-based with heavy projectile drop, extremely loud, must have a TTK of at least 2 seconds: even for unarmored targets. It should be a weapon that is only useful at long distances and it should never be used like a shotgun. Firing the sniper rifle should prevent you from switching weapons until the firing rate delay expires, this should apply to all weapons. This weapon switching rule is how Quake does it: it takes 300ms to switch from machinegun after firing it and 1700ms to switch from railgun after firing it. Not implementing this simple rule or forgetting about it is why Fortnite and other battle royale games had problems with <q>double pumping</q>, where players increased their DPS by switching weapons between every shot.</p>-->
+<p>The starting weapon should be one level lesser than these categories: it could have low damage and moderate firing rate. A melee weapon included with the starting weapon can have moderate damage and moderate firing rate.</p>
+<p>There shall be no hitscan weapons since this unfairly benefits high ping players, so weapons that would have been hitscan will instead fire fast moving projectiles. Projectile horizontal speed, projectile duration, and the vertical acceleration from gravity determines the range of the weapon: this can be a 3rd property of the weapon that increases with damage but decreases with firing rate. Damage and firing both contribute to the DPS of the weapon. So in general, high DPS weapons will have low range and low DPS weapons will have high range.</p>
+<ul>
+	<li>High DPS, close range</li>
+	<li>Medium-high DPS, close to medium range</li>
+	<li>Medium DPS, medium range</li>
+	<li>Medium-low DPS, medium to long range</li>
+	<li>Low DPS, long range</li>
+</ul>
+<p>DPS is proportional to TTK. The highest TTK weapon should kill an unarmored target in 0.35s and the lowest TTK weapon should take 1.75s (0.35 * 5) to kill that same target. For fully armored targets, this TTK will scale up by a constant factor. This factor could be 5. So the strongest weapon could kill the strongest target in 1.75s and the weakest weapon could kill the strongest target in 8.75s. Thus the lowest TTK will be 0.35s and the highest TTK will be 25 times the lowest TTK which is 8.75s.</p>
+<ul>
+	<li>High TTK (0.35s / 1.75s), close range</li>
+	<li>Medium-high TTK (0.7s / 3.5s), close to medium range</li>
+	<li>Medium TTK (1.05s / 5.25s), medium range</li>
+	<li>Medium-low TTK (1.4s / 7s), medium to long range</li>
+	<li>Low TTK (1.75s / 8.75s), long range</li>
+</ul>
+<p>Every TTK tier increases by 0.35s (the average human reaction time) for non-armored targets and by 1.75s (5 times the average human reaction time) for fully-armored targets.</p>
+<p>To make things simpler to balance, there may not be any armor in this game, and if there is they might function exactly like health. Based on the TTK numbers chosen, the maximum health of a target must be 5x the lowest health of an undamaged target. So we can say that the weakest undamaged target can have 100 health and the strongest undamaged target can have 500 health. This does not imply there will be classes in this game. Everyone should spawn with 100 health and they must pick up health and armor to reach an effective health of 500.</p>
