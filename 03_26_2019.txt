@@ -23,8 +23,8 @@
 		<p>libcurl for http transfers. POSIX sockets API for TCP and UDP, all unix-like operating systems support POSIX sockets very well; Windows, on the other hand, has some subtle differences in it's support for POSIX sockets so some extra code is required to smooth out these differences.</p>
 	</li>
 	<li>
-		For scripting: <b>Lua</b>.
-		<p>Lua is THE lightweight embeddable scripting language.</p>
+		For scripting: <s><b>Lua</b></s> <b>JavaScript</b>.
+		<p><s>Lua is THE lightweight embeddable scripting language.</s> It may be possible to use V8 or SpiderMonkey so that not only scripting, but the entire game logic can be in Javascript!</p>
 	</li>
 	<li>
 		For compression: <b>zlib, miniz</b>
