@@ -1,0 +1,43 @@
+<h1>Notes on APIs for game development</h1>
+<p>It is desired to not use an existing game engine for learning purposes and to have fine-grained control over space and performance.</p>
+<p>After a days worth of research the following APIs will most likely be used:</p>
+<ul>
+	<li>
+		For input and window management: <b>GLFW</b>.
+		<p>While SDL is very stable, popular, and easy to use, it's not as lightweight as I prefer. SDL's extension libraries for font and image loading are also not very robust. GLFW is lightweight, actively maintained, well documented, and probably faster than SDL. SFML, Glut, and Glew are said to be old and outdated.</p>
+	</li>
+	<li>
+		For graphics: <b>OpenGL, libjpeg, libpng</b>.
+		<p>Might as well use OpenGL instead of OpenGL ES since I don't plan on supporting mobile devices. I need to remember that OpenGL is an open standard and not a cross-platform library, but there are several OpenGL implementations for any platform. libjpeg and libpng shall be used for loading JPEG and PNG textures.</p>
+	</li>
+	<li>
+		For audio: <b>libsoundio, libopusfile</b>
+		<p>OpenAL was not chosen since it's Windows audio backends are deprecated unless you use their proprietary audio backends. PortAudio has a lot of criticism for it's internally hacky code. The open audio format Opus will be used of which libopusfile can decode.</p>
+	</li>
+	<li>
+		For fonts: <b>freetype</b>.
+		<p>Seems to be the only choice.</p>
+	</li>
+	<li>
+		For networking: <b>libcurl, POSIX sockets</b>.
+		<p>libcurl for http transfers. POSIX sockets API for TCP and UDP, all unix-like operating systems support POSIX sockets very well; Windows, on the other hand, has some subtle differences in it's support for POSIX sockets so some extra code is required to smooth out these differences.</p>
+	</li>
+	<li>
+		For scripting: <b>Lua</b>.
+		<p>Lua is THE lightweight embeddable scripting language.</p>
+	</li>
+	<li>
+		For compression: <b>zlib, miniz</b>
+	</li>
+	<li>
+		Main programming language: C++
+		<p>Why not C? C is a great language but it does not have built-in data structure support. Every 3rd-party C data structure library is wacky and does sexually-explicit things with the preprocessor, they also never work with non-POD types. Compiler support for modern C++ standard library features is better than compiler support for modern C standard library features. Useful standard library components of C++ to be used in this project may include:</p>
+		<ul>
+			<li><code>std::unordered_map</code></li>
+			<li><code>&lt;thread&gt;</code></li>
+			<li><code>&lt;random&gt;</code></li>
+			<li><code>&lt;filesystem&gt;</code></li>
+		</ul>
+	</li>
+</ul>
+<p>I will probably have to make a simple 2D graphics prototype before getting into 3D graphics programming.</p>
