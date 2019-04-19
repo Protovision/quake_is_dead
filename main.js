@@ -1,51 +1,19 @@
 (function() {
 	var html_elements = {};
 	var local_storage = {};
-	html_elements.background_music_player = document.getElementById("background_music_player");
 	html_elements.background_video_player = document.getElementById("background_video_player");
-	html_elements.toggle_background_music = document.getElementById("toggle_background_music");
 	html_elements.toggle_background_video = document.getElementById("toggle_background_video");
 	html_elements.go_to_index = document.getElementById("go_to_index");
 	html_elements.main = document.getElementById("main");
-	local_storage.background_music_enabled = localStorage.getItem("background_music_enabled");
-	if (local_storage.background_music_enabled == null) {
-		local_storage.background_music_enabled = false;
-	} else {
-		local_storage.background_music_enabled = (local_storage.background_music_enabled == "true");
-	}
 	local_storage.background_video_enabled = localStorage.getItem("background_video_enabled");
 	if (local_storage.background_video_enabled == null) {
 		local_storage.background_video_enabled = true;
 	} else {
 		local_storage.background_video_enabled = (local_storage.background_video_enabled == "true");
 	}
-	local_storage.background_music_time = localStorage.getItem("background_music_time");
-	if (local_storage.background_music_time == null) {
-		local_storage.background_music_time = 0.0;
-	} else {
-		local_storage.background_music_time = Number(local_storage.background_music_time);
-	}
-
 	function clear_main() {
 		while (html_elements.main.firstChild) {
 			html_elements.main.removeChild(html_elements.main.firstChild);
-		}
-	}
-	function set_background_music(bool) {
-		if (bool) {
-			html_elements.background_music_player.autoplay = true;
-			html_elements.background_music_player.loop = true;
-			html_elements.background_music_player.muted = false;
-			html_elements.background_music_player.currentTime = local_storage.background_music_time;
-			html_elements.background_music_player.play();
-			html_elements.toggle_background_music.textContent = "Disable background music";
-		} else {
-			local_storage.background_music_time = html_elements.background_music_player.currentTime;
-			html_elements.background_music_player.pause();
-			html_elements.background_music_player.autoplay = false;
-			html_elements.background_music_player.loop = false;
-			html_elements.background_music_player.muted = true;
-			html_elements.toggle_background_music.textContent = "Enable background music";
 		}
 	}
 	function set_background_video(bool) {
@@ -76,10 +44,6 @@
 		}
 		request.send();
 	}
-	html_elements.toggle_background_music.onclick = function() {
-		set_background_music(local_storage.background_music_enabled = !local_storage.background_music_enabled);
-		return false;
-	}
 	html_elements.toggle_background_video.onclick = function() {
 		set_background_video(local_storage.background_video_enabled = !local_storage.background_video_enabled);
 		return false;
@@ -92,15 +56,13 @@
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
 				var fragment = document.createDocumentFragment();
-				var title = document.createElement("h1");
-				title.appendChild(document.createTextNode("Entries"));
 				var list = document.createElement("ul");
 				list.style.listStyleType = "none";
-				list.style.textAlign = "center";
+				list.style.textAlign = "left";
 				request.response.forEach(function(e) {
 					var item = document.createElement("li");
 					var link = document.createElement("a");
-					var text = document.createTextNode(e[1]);
+					var text = document.createTextNode(e[2]);
 					link.appendChild(text);
 					link.href = "#!";
 					link.dataset.file = e[0];
@@ -108,10 +70,12 @@
 						open_entry(e[0]);
 						return false;
 					}
+					link.style.marginLeft = "3em";
+					item.appendChild(document.createTextNode(e[1] + ":"));
+					item.appendChild(document.createElement("br"));
 					item.appendChild(link);
 					list.appendChild(item);
 				});
-				fragment.appendChild(title);
 				fragment.appendChild(list);
 				html_elements.main.appendChild(fragment);
 				window.location.hash = "";
@@ -121,11 +85,8 @@
 		return false;
 	}
 	window.onbeforeunload = function() {
-		localStorage.setItem("background_music_enabled", String(local_storage.background_music_enabled));
 		localStorage.setItem("background_video_enabled", String(local_storage.background_video_enabled));
-		localStorage.setItem("background_music_time", String(html_elements.background_music_player.currentTime));
 	}
-	set_background_music(local_storage.background_music_enabled);
 	set_background_video(local_storage.background_video_enabled);
 	if (window.location.hash.length != 0 && window.location.hash != "#!") {
 		open_entry(window.location.hash.substr(1));
