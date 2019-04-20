@@ -56,11 +56,15 @@
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
 				var fragment = document.createDocumentFragment();
-				var list = document.createElement("ul");
-				list.style.listStyleType = "none";
+				var list = document.createElement("div");
+				list.style.display = "flex";
+				list.style.flexWrap = "wrap";
+				list.style.justifyContent = "space-evenly";
 				list.style.textAlign = "left";
 				request.response.forEach(function(e) {
-					var item = document.createElement("li");
+					var item = document.createElement("div");
+					item.style.margin = "1em";
+					item.style.width = "25%";
 					var link = document.createElement("a");
 					var text = document.createTextNode(e[2]);
 					link.appendChild(text);
@@ -70,7 +74,7 @@
 						open_entry(e[0]);
 						return false;
 					}
-					link.style.marginLeft = "3em";
+					/*link.style.marginLeft = "3em";*/
 					item.appendChild(document.createTextNode(e[1] + ":"));
 					item.appendChild(document.createElement("br"));
 					item.appendChild(link);
