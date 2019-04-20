@@ -87,12 +87,15 @@
 	window.onbeforeunload = function() {
 		localStorage.setItem("background_video_enabled", String(local_storage.background_video_enabled));
 	}
-	set_background_video(local_storage.background_video_enabled);
-	if (window.location.hash.length != 0 && window.location.hash != "#!") {
-		open_entry(window.location.hash.substr(1));
-	} else {
-		html_elements.go_to_index.onclick();
+	window.onhashchange = function() {
+		if (window.location.hash.length != 0 && window.location.hash != "#!") {
+			open_entry(window.location.hash.substr(1));
+		} else {
+			html_elements.go_to_index.onclick();
+		}
 	}
+	set_background_video(local_storage.background_video_enabled);
+	window.onhashchange();
 })();
 
 
