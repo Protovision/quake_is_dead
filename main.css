@@ -12,6 +12,13 @@ body {
 	color: White;
 	background-color: DarkRed;
 }
+pre {
+	margin: 0;
+	border: thin solid DarkRed;
+	padding: 1em;
+	overflow: auto;
+	white-space: nowrap;
+}
 a {
 	color: DarkRed;
 	text-decoration: none;
