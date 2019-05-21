@@ -15,8 +15,6 @@
 	local_storage.theme = localStorage.getItem("theme");
 	if (local_storage.theme == null) {
 		local_storage.theme = "Dark";
-	} else {
-		local_storage.theme = "Light";
 	}
 	function clear_main() {
 		while (html_elements.main.firstChild) {
@@ -133,6 +131,7 @@
 		}
 	}
 	set_background_video(local_storage.background_video_enabled);
+	set_theme(local_storage.theme);
 	window.onhashchange();
 })();
 
