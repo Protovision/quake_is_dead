@@ -1,12 +1,22 @@
 body {
-	font-family: 'Lustria', serif;
-	color: White;
+	font-family: 'Abel', serif;
+	color: #aaaaaa;
 	background-color: Black;
+	font-size: large;
+	/*
 	background-image: url('background.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	*/
 	line-height: 1.5;
+}
+main {
+	margin: 0 12.5%;
+	padding: 1em;
+	background-color: rgba(0, 0, 0, 0.75);
+	border: thin solid DarkRed;
+	box-shadow: 0 0 3em -1em DarkRed;
 }
 ::selection {
 	color: White;
@@ -60,12 +70,6 @@ p {
 header {
 	padding: 1em;
 	text-align: center;
-}
-main {
-	margin: 0 12.5%;
-	padding: 1em;
-	background-color: rgba(0, 0, 0, 0.8);
-	border: thin solid DarkRed;
 }
 h1 {
 	text-align: center;	
