@@ -1,5 +1,7 @@
 body {
-	font-family: 'Abel', serif;
+	margin: 0;
+	padding: 1em;
+	font-family: 'Abel', sans-serif;
 	color: #aaaaaa;
 	background-color: Black;
 	font-size: large;
@@ -12,9 +14,12 @@ body {
 	line-height: 1.5;
 }
 main {
-	margin: 0 12.5%;
+	box-sizing: border-box;
+	margin: 0 auto;
 	padding: 1em;
-	background-color: rgba(0, 0, 0, 0.75);
+	width: auto;
+	max-width: 51em;
+	background-color: rgba(0,0,0,0.65);
 	border: thin solid DarkRed;
 	box-shadow: 0 0 3em -1em DarkRed;
 }
@@ -28,6 +33,9 @@ pre {
 	padding: 1em;
 	overflow: auto;
 	white-space: nowrap;
+}
+pre,code,samp,kbd {
+	font-family: 'Share Tech Mono', monospace;
 }
 a {
 	color: DarkRed;
@@ -75,8 +83,9 @@ h1 {
 	text-align: center;	
 }
 footer {
-	margin: 0 12.5%;
+	margin: 0 auto;
 	padding: 1em;
+	text-align: center;
 }
 #website_controls {
 	margin: 0;
@@ -97,15 +106,7 @@ footer {
 	height: auto;
 	z-index: -999;
 	transform: translate(-50%, -50%);
-	filter: brightness(50%);
-}
-@media screen and (max-width: 800px) {
-	main {
-		margin: 0 1em;
-	}
-	footer {
-		margin: 0 1em;
-	}
+	filter: brightness(35%);
 }
 @media print {
 	@page {
@@ -116,6 +117,7 @@ footer {
 	}
 	body {
 		margin: 0;
+		padding: 0;
 		color: Black;
 		background-color: transparent;
 		background-image: none;
@@ -134,6 +136,7 @@ footer {
 		border: none;
 		padding: 3em;
 		background-color: transparent;
+		box-shadow: none;
 	}
 	footer {
 		display: none;
