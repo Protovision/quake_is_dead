@@ -3,6 +3,7 @@
 	var local_storage = {};
 	html_elements.background_video_player = document.getElementById("background_video_player");
 	html_elements.toggle_background_video = document.getElementById("toggle_background_video");
+	html_elements.toggle_theme = document.getElementById("toggle_theme");
 	html_elements.go_to_index = document.getElementById("go_to_index");
 	html_elements.main = document.getElementById("main");
 	local_storage.background_video_enabled = localStorage.getItem("background_video_enabled");
@@ -10,6 +11,12 @@
 		local_storage.background_video_enabled = true;
 	} else {
 		local_storage.background_video_enabled = (local_storage.background_video_enabled == "true");
+	}
+	local_storage.theme = localStorage.getItem("theme");
+	if (local_storage.theme == null) {
+		local_storage.theme = "Dark";
+	} else {
+		local_storage.theme = "Light";
 	}
 	function clear_main() {
 		while (html_elements.main.firstChild) {
@@ -31,6 +38,22 @@
 			html_elements.toggle_background_video.textContent = "Enable background video";
 		}
 	}
+	function set_theme(theme) {
+		var root = document.documentElement;
+		if (theme == "Light") {
+			root.style.setProperty("--body-foreground-color", "#222");
+			root.style.setProperty("--body-background-color", "#dfdfdf");
+			root.style.setProperty("--main-foreground-color", "#222");
+			root.style.setProperty("--main-background-color", "#dfdfdf");
+			root.style.setProperty("--accent-color", "Black");
+		} else {
+			root.style.setProperty("--body-foreground-color", "#aaa");
+			root.style.setProperty("--body-background-color", "Black");
+			root.style.setProperty("--main-foreground-color", "#aaa");
+			root.style.setProperty("--main-background-color", "Black");
+			root.style.setProperty("--accent-color", "DarkRed");
+		}
+	}
 	function open_entry(file) {
 		var request = new XMLHttpRequest();
 		request.open("GET", file, true);
@@ -46,6 +69,16 @@
 	}
 	html_elements.toggle_background_video.onclick = function() {
 		set_background_video(local_storage.background_video_enabled = !local_storage.background_video_enabled);
+		return false;
+	}
+	html_elements.toggle_theme.onclick = function() {
+		html_elements.toggle_theme.innerHTML = "Enable " + local_storage.theme + " theme";
+		if (local_storage.theme == "Dark") {
+			local_storage.theme = "Light";
+		} else {
+			local_storage.theme = "Dark";
+		}
+		set_theme(local_storage.theme);
 		return false;
 	}
 	html_elements.go_to_index.onclick = function() {
@@ -90,6 +123,7 @@
 	}
 	window.onbeforeunload = function() {
 		localStorage.setItem("background_video_enabled", String(local_storage.background_video_enabled));
+		localStorage.setItem("theme", local_storage.theme);
 	}
 	window.onhashchange = function() {
 		if (window.location.hash.length != 0 && window.location.hash != "#!") {

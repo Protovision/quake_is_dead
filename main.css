@@ -1,16 +1,50 @@
+:root {
+/*
+	--text-font: 'Abel', sans-serif;
+	--code-font: 'Share Tech Mono', monospace;
+	--body-foreground-color: #aaa;
+	--body-background-color: Black;
+	--main-foreground-color: #aaa;
+	--main-background-color: rgba(0,0,0,0.65);
+	--accent-color: DarkRed;
+	--link-color: DarkRed;
+	--active-link-color: DarkOrange;
+	--highlight-foreground-color: #aaa;
+	--highlight-background-color: #450000;
+*/
+	--text-font: 'Abel', sans-serif;
+	--code-font: 'Share Tech Mono', monospace;
+	/*
+	--body-foreground-color: #222;
+	--body-background-color: #dfdfdf;
+	--main-foreground-color: #222; 
+	--main-background-color: #dfdfdf;
+	--accent-color: Black;
+	*/
+	--body-foreground-color: #aaa;
+	--body-background-color: Black;
+	--main-foreground-color: #aaa;
+	--main-background-color: Black;
+	--accent-color: DarkRed;
+	--link-color: DarkRed;
+	--active-link-color: DarkOrange;
+	--highlight-foreground-color: #aaa;
+	--highlight-background-color: #450000;
+
+}
 body {
 	margin: 0;
 	padding: 1em;
-	font-family: 'Abel', sans-serif;
-	color: #aaaaaa;
-	background-color: Black;
-	font-size: large;
+	font-family: var(--text-font);
+	color: var(--body-foreground-color);
+	background-color: var(--body-background-color);
 	/*
 	background-image: url('background.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	*/
+	font-size: Large;
 	line-height: 1.5;
 }
 main {
@@ -19,26 +53,27 @@ main {
 	padding: 1em;
 	width: auto;
 	max-width: 51em;
-	background-color: rgba(0,0,0,0.65);
-	border: thin solid DarkRed;
-	box-shadow: 0 0 3em -1em DarkRed;
+	color: var(--main-foreground-color);
+	background-color: var(--main-background-color);
+	border: thin solid var(--accent-color);
+	box-shadow: 0 0 3em -1em var(--accent-color);
 }
 ::selection {
-	color: #aaaaaa;
-	background-color: #450000;
+	color: var(--highlight-foreground-color);
+	background-color: var(--highlight-background-color);
 }
 pre {
 	margin: 0;
-	border: thin solid DarkRed;
+	border: thin solid var(--accent-color);
 	padding: 1em;
 	overflow: auto;
 	white-space: nowrap;
 }
 pre,code,samp,kbd {
-	font-family: 'Share Tech Mono', monospace;
+	font-family: var(--code-font);
 }
 a {
-	color: DarkRed;
+	color: var(--link-color);
 	text-decoration: none;
 	outline: none;
 }
@@ -46,7 +81,7 @@ a:hover,a:focus{
 	text-decoration: underline;
 }
 a:active {
-	color: DarkOrange;
+	color: var(--active-link-color);
 }
 ul {
 	padding: 0 1.5em;
@@ -58,7 +93,7 @@ table {
 	border-collapse: collapse;
 }
 table td,table th {
-	border: thin solid;
+	border: thin solid var(--accent-color);
 	padding: 0.5em;
 }
 figure {
@@ -69,7 +104,7 @@ figcaption {
 }
 blockquote {
 	margin: 0;
-	border-left: thick solid DarkRed;
+	border-left: thick solid var(--accent-color);
 	padding: 0 1em;
 }
 p {
