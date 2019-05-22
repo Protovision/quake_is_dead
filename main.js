@@ -1,10 +1,11 @@
 (function() {
 	var html_elements = {};
 	var local_storage = {};
+	html_elements.root = document.documentElement;
 	html_elements.background_video_player = document.getElementById("background_video_player");
 	html_elements.toggle_background_video = document.getElementById("toggle_background_video");
 	html_elements.toggle_theme = document.getElementById("toggle_theme");
-	html_elements.go_to_index = document.getElementById("go_to_index");
+	html_elements.blog_title = document.getElementById("blog_title");
 	html_elements.main = document.getElementById("main");
 	local_storage.background_video_enabled = localStorage.getItem("background_video_enabled");
 	if (local_storage.background_video_enabled == null) {
@@ -27,32 +28,29 @@
 			html_elements.background_video_player.loop = true;
 			html_elements.background_video_player.play();
 			html_elements.background_video_player.style.display = "inline";
-			html_elements.toggle_background_video.textContent = "Disable background video";
 		} else {
 			html_elements.background_video_player.pause();
 			html_elements.background_video_player.autoplay = false;
 			html_elements.background_video_player.loop = false;
 			html_elements.background_video_player.style.display = "none";
-			html_elements.toggle_background_video.textContent = "Enable background video";
 		}
 	}
 	function set_theme(theme) {
-		var root = document.documentElement;
 		if (theme == "Light") {
-			root.style.setProperty("--body-foreground-color", "#222");
-			root.style.setProperty("--body-background-color", "#dfdfdf");
-			root.style.setProperty("--main-foreground-color", "#222");
-			root.style.setProperty("--main-background-color", "#dfdfdf");
-			root.style.setProperty("--accent-color", "Black");
+			html_elements.root.style.setProperty("--body-foreground-color", "#222");
+			html_elements.root.style.setProperty("--body-background-color", "#dfdfdf");
+			html_elements.root.style.setProperty("--main-foreground-color", "#222");
+			html_elements.root.style.setProperty("--main-background-color", "#dfdfdf");
+			html_elements.root.style.setProperty("--accent-color", "Black");
 		} else {
-			root.style.setProperty("--body-foreground-color", "#aaa");
-			root.style.setProperty("--body-background-color", "Black");
-			root.style.setProperty("--main-foreground-color", "#aaa");
-			root.style.setProperty("--main-background-color", "Black");
-			root.style.setProperty("--accent-color", "DarkRed");
+			html_elements.root.style.setProperty("--body-foreground-color", "#aaa");
+			html_elements.root.style.setProperty("--body-background-color", "Black");
+			html_elements.root.style.setProperty("--main-foreground-color", "#aaa");
+			html_elements.root.style.setProperty("--main-background-color", "Black");
+			html_elements.root.style.setProperty("--accent-color", "DarkRed");
 		}
 	}
-	function open_entry(file) {
+	function goto_entry(file) {
 		var request = new XMLHttpRequest();
 		request.open("GET", file, true);
 		request.responseType = "text";
@@ -61,25 +59,12 @@
 				clear_main();
 				html_elements.main.innerHTML = request.response;
 				window.location.hash = file;
+				window.scrollTo(0,0);
 			}
 		}
 		request.send();
 	}
-	html_elements.toggle_background_video.onclick = function() {
-		set_background_video(local_storage.background_video_enabled = !local_storage.background_video_enabled);
-		return false;
-	}
-	html_elements.toggle_theme.onclick = function() {
-		html_elements.toggle_theme.innerHTML = "Enable " + local_storage.theme + " theme";
-		if (local_storage.theme == "Dark") {
-			local_storage.theme = "Light";
-		} else {
-			local_storage.theme = "Dark";
-		}
-		set_theme(local_storage.theme);
-		return false;
-	}
-	html_elements.go_to_index.onclick = function() {
+	function goto_index() {
 		clear_main();
 		var request = new XMLHttpRequest();
 		request.open("GET", "entries.json", true);
@@ -88,21 +73,17 @@
 			if (request.readyState == 4 && request.status == 200) {
 				var fragment = document.createDocumentFragment();
 				var list = document.createElement("div");
-				list.style.display = "flex";
-				list.style.flexWrap = "wrap";
-				list.style.justifyContent = "space-evenly";
-				list.style.textAlign = "left";
+				list.className = "index";
 				request.response.forEach(function(e) {
 					var item = document.createElement("div");
-					item.style.margin = "1em";
-					item.style.width = "25%";
+					item.className = "entry";
 					var link = document.createElement("a");
 					var text = document.createTextNode(e[2]);
 					link.appendChild(text);
 					link.href = "#!";
 					link.dataset.file = e[0];
 					link.onclick = function() {
-						open_entry(e[0]);
+						goto_entry(e[0]);
 						return false;
 					}
 					/*link.style.marginLeft = "3em";*/
@@ -117,6 +98,36 @@
 			}
 		};
 		request.send();
+	}
+	function refresh() {
+		if (window.location.hash.length != 0 && window.location.hash != "#!") {
+			goto_entry(window.location.hash.substr(1));
+		} else {
+			goto_index();
+		}
+	}
+	html_elements.toggle_background_video.onclick = function() {
+		local_storage.background_video_enabled = !local_storage.background_video_enabled;
+		if (local_storage.background_video_enabled) {
+			html_elements.toggle_background_video.textContent = "Disable background video";
+		} else {
+			html_elements.toggle_background_video.textContent = "Enable background video";
+		}
+		set_background_video(local_storage.background_video_enabled);
+		return false;
+	}
+	html_elements.toggle_theme.onclick = function() {
+		html_elements.toggle_theme.innerHTML = "Enable " + local_storage.theme + " theme";
+		if (local_storage.theme == "Dark") {
+			local_storage.theme = "Light";
+		} else {
+			local_storage.theme = "Dark";
+		}
+		set_theme(local_storage.theme);
+		return false;
+	}
+	html_elements.blog_title.onclick = function() {
+		goto_index();
 		return false;
 	}
 	window.onbeforeunload = function() {
@@ -124,15 +135,11 @@
 		localStorage.setItem("theme", local_storage.theme);
 	}
 	window.onhashchange = function() {
-		if (window.location.hash.length != 0 && window.location.hash != "#!") {
-			open_entry(window.location.hash.substr(1));
-		} else {
-			html_elements.go_to_index.onclick();
-		}
+		refresh();
 	}
 	set_background_video(local_storage.background_video_enabled);
 	set_theme(local_storage.theme);
-	window.onhashchange();
+	refresh();
 })();
 
 

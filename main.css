@@ -58,6 +58,19 @@ main {
 	border: thin solid var(--accent-color);
 	box-shadow: 0 0 3em -1em var(--accent-color);
 }
+.index {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	text-align: left;
+}
+.entry {
+	box-sizing: border-box;
+	margin: 1em 0;
+	padding: 1em;
+	width: 50%;
+	text-align: center;
+}
 ::selection {
 	color: var(--highlight-foreground-color);
 	background-color: var(--highlight-background-color);
