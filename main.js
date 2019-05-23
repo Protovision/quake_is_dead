@@ -28,12 +28,15 @@
 			html_elements.background_video_player.loop = true;
 			html_elements.background_video_player.play();
 			html_elements.background_video_player.style.display = "inline";
+			html_elements.toggle_background_video.firstChild.nodeValue = "Disable background video";
 		} else {
 			html_elements.background_video_player.pause();
 			html_elements.background_video_player.autoplay = false;
 			html_elements.background_video_player.loop = false;
 			html_elements.background_video_player.style.display = "none";
+			html_elements.toggle_background_video.firstChild.nodeValue = "Enable background video";
 		}
+		local_storage.background_video_enabled = bool;
 	}
 	function set_theme(theme) {
 		if (theme == "Light") {
@@ -42,12 +45,16 @@
 			html_elements.root.style.setProperty("--main-foreground-color", "#222");
 			html_elements.root.style.setProperty("--main-background-color", "#dfdfdf");
 			html_elements.root.style.setProperty("--accent-color", "Black");
+			html_elements.toggle_theme.firstChild.nodeValue = "Enable Dark theme";
+			local_storage.theme = "Light";
 		} else {
 			html_elements.root.style.setProperty("--body-foreground-color", "#aaa");
 			html_elements.root.style.setProperty("--body-background-color", "Black");
 			html_elements.root.style.setProperty("--main-foreground-color", "#aaa");
 			html_elements.root.style.setProperty("--main-background-color", "Black");
 			html_elements.root.style.setProperty("--accent-color", "DarkRed");
+			html_elements.toggle_theme.firstChild.nodeValue = "Enable Light theme";
+			local_storage.theme = "Dark";
 		}
 	}
 	function goto_entry(file) {
@@ -107,23 +114,15 @@
 		}
 	}
 	html_elements.toggle_background_video.onclick = function() {
-		local_storage.background_video_enabled = !local_storage.background_video_enabled;
-		if (local_storage.background_video_enabled) {
-			html_elements.toggle_background_video.textContent = "Disable background video";
-		} else {
-			html_elements.toggle_background_video.textContent = "Enable background video";
-		}
-		set_background_video(local_storage.background_video_enabled);
+		set_background_video(!local_storage.background_video_enabled);
 		return false;
 	}
 	html_elements.toggle_theme.onclick = function() {
-		html_elements.toggle_theme.innerHTML = "Enable " + local_storage.theme + " theme";
 		if (local_storage.theme == "Dark") {
-			local_storage.theme = "Light";
+			set_theme("Light");
 		} else {
-			local_storage.theme = "Dark";
+			set_theme("Dark");
 		}
-		set_theme(local_storage.theme);
 		return false;
 	}
 	html_elements.blog_title.onclick = function() {
