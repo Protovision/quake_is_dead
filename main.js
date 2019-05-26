@@ -18,8 +18,8 @@
 		local_storage.theme = "Dark";
 	}
 	function clear_main() {
-		while (html_elements.main.firstChild) {
-			html_elements.main.removeChild(html_elements.main.firstChild);
+		while (html_elements.main.lastChild) {
+			html_elements.main.removeChild(html_elements.main.lastChild);
 		}
 	}
 	function set_background_video(bool) {
@@ -63,8 +63,12 @@
 		request.responseType = "text";
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
+				var fragment = document.createDocumentFragment();
+				var article = document.createElement("article");
+				article.innerHTML = request.response;
+				fragment.appendChild(article);
 				clear_main();
-				html_elements.main.innerHTML = request.response;
+				html_elements.main.appendChild(fragment);
 				window.location.hash = file;
 				window.scrollTo(0,0);
 			}
@@ -72,7 +76,6 @@
 		request.send();
 	}
 	function goto_index() {
-		clear_main();
 		var request = new XMLHttpRequest();
 		request.open("GET", "entries.json", true);
 		request.responseType = "json";
@@ -100,6 +103,7 @@
 					list.appendChild(item);
 				});
 				fragment.appendChild(list);
+				clear_main();
 				html_elements.main.appendChild(fragment);
 				window.location.hash = "";
 			}
