@@ -51,7 +51,8 @@
 			html_elements.root.style.setProperty("--body-foreground-color", "#aaa");
 			html_elements.root.style.setProperty("--body-background-color", "Black");
 			html_elements.root.style.setProperty("--main-foreground-color", "#aaa");
-			html_elements.root.style.setProperty("--main-background-color", "Black");
+			/*html_elements.root.style.setProperty("--main-background-color", "Black");*/
+			html_elements.root.style.setProperty("--main-background-color", "rgba(0,0,0,0.85)");
 			html_elements.root.style.setProperty("--accent-color", "DarkRed");
 			html_elements.toggle_theme.firstChild.nodeValue = "Enable Light theme";
 			local_storage.theme = "Dark";

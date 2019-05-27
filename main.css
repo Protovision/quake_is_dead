@@ -154,7 +154,7 @@ footer {
 	height: auto;
 	z-index: -999;
 	transform: translate(-50%, -50%);
-	filter: brightness(35%);
+	/*filter: brightness(50%);*/
 }
 @media print {
 	@page {
