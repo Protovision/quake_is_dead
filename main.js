@@ -91,7 +91,7 @@
 					var link = document.createElement("a");
 					var text = document.createTextNode(e[2]);
 					link.appendChild(text);
-					link.href = "#!";
+					link.href = "#" + e[0];
 					link.dataset.file = e[0];
 					link.onclick = function() {
 						goto_entry(e[0]);
