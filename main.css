@@ -109,15 +109,15 @@ table td,table th {
 	padding: 0.5em;
 }
 figure {
-	margin: 1em;
+	margin: 0.75em;
 }
 figcaption {
 	text-align: center;
 }
 blockquote {
 	margin: 0;
-	border-left: thick solid var(--accent-color);
-	padding: 0 1em;
+	border-left: 0.375em solid var(--accent-color);
+	padding: 0 0.75em;
 }
 p {
 	text-indent: 1em;
