@@ -9,69 +9,73 @@
 <figure>
 	<figcaption>Quake III weapon statistics</figcaption>
 	<table>
-		<tr>
-			<th>Weapon</th>
-			<th>Damage/Shot</th>
-			<th>Shots/Second</th>
-			<th>TTK (No stack)
-			<th>TTK (Full stack)</th>
-		</tr>
-		<tr>
-			<td>Gauntlet</td>
-			<td>50</td>
-			<td>2.5</td>
-			<td>0.4</td>
-			<td>2.8</td>
-		</tr>
-		<tr>
-			<td>Machinegun</td>
-			<td>7</td>
-			<td>10</td>
-			<td>1.4</td>
-			<td>5.7</td>
-		</tr>
-		<tr>
-			<td>Shotgun</td>
-			<td>110</td>
-			<td>1</td>
-			<td>0</td>
-			<td>3</td>
-		</tr>
-		<tr>
-			<td>Grenade Launcher</td>
-			<td>100</td>
-			<td>1.25</td>
-			<td>0</td>
-			<td>2.4</td>
-		</tr>
-		<tr>
-			<td>Rocket Launcher</td>
-			<td>100</td>
-			<td>1.25</td>
-			<td>0</td>
-			<td>2.4</td>
-		</tr>
-		<tr>
-			<td>Lightning Gun</td>
-			<td>8</td>
-			<td>20</td>
-			<td>0.6</td>
-			<td>2.45</td>
-		</tr>
-		<tr>
-			<td>Plasma Gun</td>
-			<td>20</td>
-			<td>10</td>
-			<td>0.4</td>
-			<td>1.9</td>
-		</tr>
-		<tr>
-			<td>Railgun</td>
-			<td>100</td>
-			<td>0.666</td>
-			<td>0</td>
-			<td>4.5</td>
-		</tr>
+		<thead>
+			<tr>
+				<th>Weapon</th>
+				<th>Damage/Shot</th>
+				<th>Shots/Second</th>
+				<th>TTK (No stack)
+				<th>TTK (Full stack)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Gauntlet</td>
+				<td>50</td>
+				<td>2.5</td>
+				<td>0.4</td>
+				<td>2.8</td>
+			</tr>
+			<tr>
+				<td>Machinegun</td>
+				<td>7</td>
+				<td>10</td>
+				<td>1.4</td>
+				<td>5.7</td>
+			</tr>
+			<tr>
+				<td>Shotgun</td>
+				<td>110</td>
+				<td>1</td>
+				<td>0</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>Grenade Launcher</td>
+				<td>100</td>
+				<td>1.25</td>
+				<td>0</td>
+				<td>2.4</td>
+			</tr>
+			<tr>
+				<td>Rocket Launcher</td>
+				<td>100</td>
+				<td>1.25</td>
+				<td>0</td>
+				<td>2.4</td>
+			</tr>
+			<tr>
+				<td>Lightning Gun</td>
+				<td>8</td>
+				<td>20</td>
+				<td>0.6</td>
+				<td>2.45</td>
+			</tr>
+			<tr>
+				<td>Plasma Gun</td>
+				<td>20</td>
+				<td>10</td>
+				<td>0.4</td>
+				<td>1.9</td>
+			</tr>
+			<tr>
+				<td>Railgun</td>
+				<td>100</td>
+				<td>0.666</td>
+				<td>0</td>
+				<td>4.5</td>
+			</tr>
+		</tbody>
 	</table>
 </figure>
 <p>The average TTK for non-stacked targets is 0.35 seconds; for full-stacked targets, it's 3.14 seconds. This might seem low, but high-mobility and small hitboxes in Quake allows for dodging shots.</p>
