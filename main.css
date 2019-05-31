@@ -1,26 +1,6 @@
 :root {
-/*
 	--text-font: 'Abel', sans-serif;
 	--code-font: 'Share Tech Mono', monospace;
-	--body-foreground-color: #aaa;
-	--body-background-color: Black;
-	--main-foreground-color: #aaa;
-	--main-background-color: rgba(0,0,0,0.65);
-	--accent-color: DarkRed;
-	--link-color: DarkRed;
-	--active-link-color: DarkOrange;
-	--highlight-foreground-color: #aaa;
-	--highlight-background-color: #450000;
-*/
-	--text-font: 'Abel', sans-serif;
-	--code-font: 'Share Tech Mono', monospace;
-	/*
-	--body-foreground-color: #222;
-	--body-background-color: #dfdfdf;
-	--main-foreground-color: #222; 
-	--main-background-color: #dfdfdf;
-	--accent-color: Black;
-	*/
 	--body-foreground-color: #aaa;
 	--body-background-color: Black;
 	--main-foreground-color: #aaa;
@@ -34,16 +14,10 @@
 }
 body {
 	margin: 0;
-	padding: 1em;
+	padding: 0.375em;
 	font-family: var(--text-font);
 	color: var(--body-foreground-color);
 	background-color: var(--body-background-color);
-	/*
-	background-image: url('background.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	*/
 	font-size: Large;
 	line-height: 1.5;
 }
