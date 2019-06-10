@@ -1,0 +1,48 @@
+<h2>Notes on game architecture: Initialization.</h2>
+<p>I do not yet have much experience creating video games, my experience lacks the implementation of anything relating to 3D graphics or multiplayer capabilities. These notes are for myself, based on my limited understanding and how I can possibly create a game from scratch.</p>
+<p>I shall begin by writing notes on software in general. From the highest level, the lifetime of all computer programs have the following phases:</p>
+<ol>
+	<li>Initialization</li>
+	<li>Execution</li>
+	<li>Shutdown</li>
+</ol>
+<p>In regards to object-oriented programming theory, an <i>object</i> is anything that has a state, which is just information that a computer algorithm can operate and perform computations on, and the state of an object can be composed of other sub-objects. The state of an object can change over it's lifetime but it doesn't have to.</p>
+<p>A computer program can be thought of as an object whose state is a collection of sub-objects conventionally known as the <i>global variables</i> of that program. The lifetime of a global variable has the same duration as the lifetime of the computer program that owns it. A variable, in general, is an object that is associated with and accessible through it's name. Objects that do not have a name (and are thus not variables) are typically either temporary objects created from the result of an expression/computation or elements of a container (data structure).</p>
+<p>The initialization and shutdown phases of a computer program are similar to the initialization and destruction phases of an object in general. Object initialization prepares the lifetime of the object to begin by setting up that object's initial state or value which may include initializing all of the object's sub-objects. Object destruction happens after the end of an object's lifetime where the state or value of the object is destroyed which may require destroying all of the object's sub-objects. Inbetween object initialization and object destruction, that is, during the lifetime of the object, objects can have something like an execution phase if one can think of it as the object being assigned to perform work in the background, but this is completely optional; object's are usually not doing anything unless explicitly invoked by the computer program's main algorithm. Every computer program with a practical purpose, on the other hand, must be executing something and therefore always has an execution phase which lasts as long as is necessary.</p>
+<p>The execution phase of a computer program is a repeating process with two phases: processing input and producing output. The inputs and outputs of a computer program are domain-dependent, for a video game on a desktop computer, these inputs usually include keyboard input and mouse input while the outputs usually include audio output and screen output. For networked, multiplayer video games additional inputs and outputs are each in the form of a network socket which is an abstract two-way communication channel between two computers on a computer network, one socket will be needed for each connection and thus a server will have an additional input and output for each connected client while clients will only need one additional input and output.</p>
+<p>Unlike many computer programs that wait for input before producing output, a video game must continue producing output even when no input is available. This constant output that does not require input is usually in the form of repeating animations, music, and ambient environment sounds. The video game must keep track of time very carefully so that the output does not happen too fast or too slow and that it is consistent with the input that's received, additionally, many games do and should allow the user to cap the number of frames per second (fps) that the game runs at. I believe there is no reason to run a game at a framerate that is higher than the refresh rate of the screen, let alone having an uncapped framerate, and that it can be detrimental to the computer to not limit the game's framerate. What is also important is that animations should be based strictly on time and network transfer rates should be based strictly on a constant value and neither should be affected by the game's fps, it's surprising to see games made by AAA game companies get this wrong.</p>
+<h3>Initialization</h3>
+<p>Initialization of a video game is composed of the initialization of the video game's internal modules, each module dealing with a specific technical domain. Each module may deal with one of the following:</p>
+<ul>
+	<li>Audio</li>
+	<li>Mouse and keyboard input</li>
+	<li>Windows and monitors</li>
+	<li>Graphics</li>
+	<li>Networking</li>
+	<li>Filesystem</li>
+	<li>Terminal and Standard I/O</li>
+	<li>Physics</li>
+	<li>Artificial intelligence</li>
+	<li>Main game logic</li>
+	<li>Menu logic</li>
+	<li>Scripting and configuration</li>
+</ul>
+<p>A few of these modules provide ways of interfacing with physical devices and may require explicit kinds of initialization. Initialization of these components must happen in the proper order as well, for example: when the game window is created, what size should it be? Should it be fullscreen? What monitor should it appear in? The answers to these questions should already be determined by the initialization of the module that deals with scripting and configuration which may involve reading the settings from a script and choosing sensible default settings based on what kind of hardware and environment is detected on the system.</p>
+<p>This gives us the clue to the first part of the initialization: Detecting system devices and operating system environment settings. This must happen before applying configuration settings, because there's nothing to configure if the game does not have any context as to what kind of computer it is running on. A preliminary to this first part of initialization includes initializing the libraries to be used by the program. For example, detecting graphics capabilities cannot happen before the graphics library has been initialized. So the very first thing to happen is the initialization of the low-level software libraries that will be used by the game followed by queries of the hardware and operating system information.</p>
+<p>The second part of initialization: finding and processing configuration files. Since command-line arguments should override configuration files, whatever settings the configuration files produce should be further modified or overwritten by any possible command-line arguments given to the game when launched. Configuration files can be stored as scripts in an embeddable scripting language like Lua. The script can configure the initialization of the game by exporting variables. The initialization scripts should have access to the results obtained from the first part of the initialization in which system information was queried and obtained.</p>
+<p>Of course, running the scripts require initialization as well, particularly of the scripting engines and their standard I/O channels and any attached interactive terminal. You see, every computer program has a standard input and standard output stream. The simplest programs receive all their input from the standard input stream which is usually associated with keyboard input into a terminal that is attached to the program and they send all their output to the standard output stream which is usually associated with the text output in the terminal window but may also sometimes be redirected to a file or even a network connection. Programs that are not launched from a terminal will not have their standard output visible to the user nor will user input be sent through the standard input stream, this will be the usual case for games launched by players who intend to play the game but the games launched by players who intend to run the game as a dedicated server for multiplayer gaming will often run the game from a terminal and without a graphical window.</p>
+<p>So after system information has been gathered, any detected terminal window must be configured, even before the configuration scripts run. A log file and/or event journal must also be opened that records all internal activity of the game and the terminal window for debugging purposes.</p>
+<p>After all this, the scripting engine is initialized and the configuration scripts are located and executed. Then the command-line arguments are parsed and applied.</p>
+<p>What we have so far is:</p>
+<ol>
+	<li>Initialize terminal</li>
+	<li>Open log files for writing</li>
+	<li>Initialize system libraries.</li>
+	<li>Gather system information.</li>
+	<li>Initialize scripting engine.</li>
+	<li>Locate and execute configuration scripts.</li>
+	<li>Apply command-line arguments.</li>
+</ol>
+<p>I have actually moved the initialization of the terminal and the opening of log files to the top since these are essential to debugging and everything that happens from the beginning to the end of the program should be recorded in these components. </p>
+<p>Even though command-line arguments are applied in the last part, certain command-line arguments should be applied in the very beginning, particularly the ones that can set custom locations for log files and configuration scripts. Most of the command-line arguments as well as the options parsed from the configuration scripts will be used to initialize other components of the game. Most of these options include things that would be accessible from the game's menu UI such as: window size, mouse sensitivity, volume, etc.</p>
+<p>I shall write more on initialization in another post.</p>

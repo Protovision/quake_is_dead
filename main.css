@@ -72,7 +72,7 @@ a:active {
 }
 ul {
 	padding: 0 1.5em;
-	list-style-type: none;
+	list-style-type: circle;
 }
 table {
 	margin: 0 auto;
