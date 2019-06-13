@@ -25,3 +25,5 @@
 <p>The primary purpose of IndexedDB is for storing large and/or user-generated data for web apps.</p>
 <h2>File API</h2>
 <p>The File API is another Javascript web API, but it has little to do with with the above 4 standards/APIs but I think it deserves a mention. The File API cannot store anything. The File API basically gives Javascript read-only access to the user's filesystem for files specifically selected by the user. This allows web apps to perform offline work rather than requiring selected files to be uploaded to the server for processing through a POST method.</p>
+<h2>Summary</h2>
+<p>Never use cookies. Use Web storage for user settings and preferences. Use cache for frequently requested but infrequently updated URL-addressable resources. Use IndexedDB for application state and large user-generated data. Do not use any of these methods to store security sensitive data.</p>
