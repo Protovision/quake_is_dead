@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>Quake is Dead</title>
 		<meta name="author" content="Mark Swoope">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=News+Cycle|Share+Tech+Mono">
 		<link rel="stylesheet" href="normalize.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel|Share+Tech+Mono">
 		<link rel="stylesheet" href="main.css">
 	</head>
 	<body>
-		<header>
-			<video id="background_video_player" src="background_video.webm" preload="auto" muted></video>
-			<h1><a id="blog_title" href="#!">Quake is Dead</a></h1>
-			<p>A blog for all and none.</p>
-			<ul id="website_controls">
-				<li><a id="toggle_background_video" href="#!">Enable background video</a></li>
-				<li><a id="toggle_theme" href="#!">Enable Light theme</a></li>
-			</ul>
-		</header>
-		<main id="main">
+		<main>
+			<header>
+				<h1><button id="title">Quake is Dead</button></h1>
+				<p>A blog for all and none.</p>
+			</header>
+			<div id="content">
+			</div>
+			<footer>
+				<address><a href="mailto:markswoope@outlook.com">Email Mark</a></address>
+			</footer>
 		</main>
-		<footer>
-			<address><a href="mailto:markswoope@outlook.com">Email Mark</a></address>
-		</footer>
 		<script src="main.js"></script>
 	</body>
 </html>
