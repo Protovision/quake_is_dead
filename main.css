@@ -46,8 +46,8 @@ a:hover,a:focus {
 	text-decoration: underline;		
 }
 ::selection {
-	color: var(--foreground-color);
-	background-color: var(--accent-color);
+	color: var(--background-color);
+	background-color: var(--foreground-color);
 }
 body {
 	margin: 0;
@@ -62,6 +62,9 @@ body>main {
 	box-sizing: border-box;
 	max-width: 51em;
 	margin: 0 auto;
+}
+body>main>header {
+	margin: 0 0 1.2em 0;
 }
 body>main>header>p {
 	text-align: center;
