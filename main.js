@@ -3,6 +3,7 @@
 		const title = document.getElementById('title');
 		const content = document.getElementById('content');
 		const loading_spinner_fragment = document.createDocumentFragment();
+		const fetch_failure_fragment = document.createDocumentFragment();
 		let loading_spinner_timer;
 		(() => {
 			const b = document.createElement('b');
@@ -15,6 +16,11 @@
 			loading_spinner_fragment.appendChild(b);
 			loading_spinner_fragment.appendChild(document.createElement('br'));
 			loading_spinner_fragment.appendChild(div);
+		})();
+		(() => {
+			const b = document.createElement('b');
+			b.appendChild(document.createTextNode('Failed to fetch page.'));
+			fetch_failure_fragment.appendChild(b);
 		})();
 		const clear_content = async () => {
 			while (content.lastChild) {
@@ -47,9 +53,7 @@
 					json = await response.json();
 					const fragment = document.createDocumentFragment();
 					const ul = document.createElement('ul');
-					ul.style.margin = '0';
-					ul.style.padding = '0';
-					ul.style.listStyleType = 'none';
+					ul.classList.add("entry-list");
 					json.forEach((e) => {
 						const li = document.createElement('li');
 						const a = document.createElement('a');
@@ -79,6 +83,7 @@
 					await clear_loading_spinner();
 					content.appendChild(fragment);
 					location.hash = filename;
+					scrollTo(0, 0);
 				}
 			});
 		};

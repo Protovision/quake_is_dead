@@ -1,51 +1,57 @@
 :root {
 	--font: 'News Cycle', sans-serif;
 	--code-font: 'Share Tech Mono', monospace;
-	--foreground-color: #d0d0d0;
+	--foreground-color: #a0a0a0;
 	--background-color: #080808;
 	--accent-color: #a02828;
-	--one-inch: 6em;
+}
+h1,h2,h3,h4,h5,h6 {
+	text-align: center;
+}
+blockquote {
+	border-left: thick solid var(--accent-color);
+	padding-left: 0.6em;
+}
+figcaption {
+	text-align: center;
+}
+p {
+	text-indent: 1.5em;
+}
+pre,code {
+	font-family: var(--code-font);
+}
+pre {
+	overflow: auto;
+	white-space: nowrap;
+}
+a {
+	color: var(--accent-color);
+	text-decoration: none;
+}
+a:hover,a:focus {
+	text-decoration: underline;		
+}
+::selection {
+	color: var(--foreground-color);
+	background-color: var(--accent-color);
 }
 body {
 	margin: 0;
-	padding: 0.75em;
+	padding: 1.2em 0.6em;
 	color: var(--foreground-color);
 	background-color: var(--background-color);
 	font-family: var(--font);
 	font-size: large;
 	line-height: 1.0;
 }
-::selection {
-	color: var(--foreground-color);
-	background-color: var(--accent-color);
+body>main {
+	box-sizing: border-box;
+	max-width: 51em;
+	margin: 0 auto;
 }
-a {
-	color: var(--accent-color);
-	text-decoration: none;
-}
-a:hover,
-a:focus {
-	text-decoration: underline;
-}
-pre {
-	margin: 0;
-	padding: 0.5em;
-	overflow: auto;
-	white-space: nowrap;
-}
-pre,code,samp,kbd {
-	font-family: var(--code-font);
-}
-figure {
-	margin: 0.75em;
-}
-blockquote {
-	margin: 0;
-	border-left: thick solid var(--accent-color);
-	padding: 0 0.75em;
-}
-address {
-	font-style: normal;
+body>main>header>p {
+	text-align: center;
 }
 button {
 	margin: 0;
@@ -59,18 +65,6 @@ button {
 	font-weight: inherit;
 	line-height: inherit;
 }
-body>main {
-	box-sizing: border-box;
-	max-width: calc(8.5 * var(--one-inch));
-	margin: 0 auto;
-}
-body>main>header>h1 {
-	margin: calc(0.125 * var(--one-inch)) 0;
-	text-align: center;
-}
-body>main>header>p {
-	text-align: center;
-}
 #title:hover,
 #title:focus {
 	cursor: pointer;
@@ -79,11 +73,28 @@ body>main>header>p {
 body>main>div {
 	border-top: thin solid var(--accent-color);
 	border-bottom: thin solid var(--accent-color);
-	padding: 0.75em;
+	padding: 0.6em;
 	line-height: 1.5;
 }
 body>main>div.loading {
 	text-align: center;
+}
+body>main>div>ul.entry-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+body>main>div>ul.entry-list>li {
+	margin: 0.5em 0;
+}
+body>main>div>ul.entry-list>li>a {
+	display: inline-block;
+	transition: 0.3s;
+}
+body>main>div>ul.entry-list>li>a:hover,
+body>main>div>ul.entry-list>li>a:focus {
+	outline: none;
+	padding-left: 1.2em;
 }
 body>main>footer {
 	line-height: 1.5;

@@ -1,0 +1,58 @@
+/*
+ * Mark Swoope's margin, padding, and font size preferences for text content
+ * elements.
+ */
+.swoope h1 {
+	margin: 0.6em 0;
+	font-size: 2.1em;
+}
+.swoope h2 {
+	margin: 0.75em 0;
+	font-size: 1.8em;
+}
+.swoope h3 {
+	margin: 0.9em 0;
+	font-size: 1.5em;
+}
+.swoope h4 {
+	margin: 1.5em 0;
+	font-size: 1.2em;
+}
+.swoope h5 {
+	margin: 1.65em 0;
+	font-size: 0.9em;
+}
+.swoope h6 {
+	margin: 1.75em 0;
+	font-size: 0.6em;
+}
+.swoope blockquote {
+	margin: 0.6em 1.5em;
+}
+.swoope dd {
+	margin: 0 0 0 1.5em;
+}
+.swoope dl {
+	margin: 0.6em 0;
+}
+.swoope figure {
+	margin: 0.6em 1.5em;
+}
+.swoope hr {
+	margin: 0.3em 0;
+	border: thin solid;
+}
+.swoope ol {
+	margin: 0.6em 0;
+	padding: 0 0 0 1.5em;
+}
+.swoope p {
+	margin: 0.6em 0;
+}
+.swoope pre {
+	margin: 0.6em 0;
+}
+.swoope ul {
+	margin: 0.6em 0;
+	padding: 0 0 0 1.5em;
+}
