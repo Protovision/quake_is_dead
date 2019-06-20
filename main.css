@@ -13,7 +13,8 @@ blockquote {
 	padding-left: 0.6em;
 }
 figure {
-	overflow: auto;
+	overflow-y: hidden;
+	overflow-x: auto;
 }
 figcaption {
 	text-align: center;
