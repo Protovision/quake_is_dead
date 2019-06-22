@@ -1,5 +1,5 @@
 (() => {
-	window.addEventListener('DOMContentLoaded', (event) => {
+	window.addEventListener('DOMContentLoaded', async (event) => {
 		const title = document.querySelector('body>header>h1>a');
 		const main = (() => {
 			const main = document.querySelector('body>main');
