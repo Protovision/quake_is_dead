@@ -4,9 +4,14 @@
 	--foreground-color: #a0a0a0;
 	--background-color: #080808;
 	--accent-color: #a02828;
+	font-size: 1.125em;
+	line-height: 1.5;
 }
+
+
 h1,h2,h3,h4,h5,h6 {
 	text-align: center;
+	/*line-height: 1.0;*/
 }
 blockquote {
 	border-left: thick solid var(--accent-color);
@@ -49,71 +54,62 @@ a:hover,a:focus {
 	color: var(--background-color);
 	background-color: var(--foreground-color);
 }
+
+
 body {
 	margin: 0;
 	padding: 1.2em 0.6em;
 	color: var(--foreground-color);
 	background-color: var(--background-color);
 	font-family: var(--font);
-	font-size: large;
-	line-height: 1.0;
+}
+body>header,
+body>main,
+body>footer {
+	display: block;
+	box-sizing: border-box;
+	margin: 0 auto;
+	max-width: 51em;
+}
+body>header {
+	margin-bottom: 1.2em;
+}
+body>header>p {
+	text-align: center;
+	text-indent: 0;
 }
 body>main {
-	box-sizing: border-box;
-	max-width: 51em;
-	margin: 0 auto;
-}
-body>main>header {
-	margin: 0 0 1.2em 0;
-}
-body>main>header>p {
-	text-align: center;
-}
-button {
-	margin: 0;
-	border: none;
-	padding: 0;
-	color: var(--accent-color);
-	background-color: inherit;
-	font-family: inherit;
-	font-size: inherit;
-	font-style: inherit;
-	font-weight: inherit;
-	line-height: inherit;
-}
-#title:hover,
-#title:focus {
-	cursor: pointer;
-	text-decoration: underline;
-}
-body>main>div {
 	border-top: thin solid var(--accent-color);
 	border-bottom: thin solid var(--accent-color);
 	padding: 0.6em;
-	line-height: 1.5;
+	opacity 1.0;
+	transition: opacity 0.3s linear;
 }
-body>main>div.loading {
+body>main.hidden,
+body>footer.hidden {
+	opacity: 0;
+}
+body>main.loading {
 	text-align: center;
 }
-body>main>div>ul.entry-list {
+body>main.loading p {
+	text-indent: 0;
+}
+body>main>ul.entry-list {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
 }
-body>main>div>ul.entry-list>li {
+body>main>ul.entry-list>li {
 	margin: 0.6em 0;
 }
-body>main>div>ul.entry-list>li>a {
+body>main>ul.entry-list>li>a {
 	display: inline-block;
 	transition: 0.3s;
 }
-body>main>div>ul.entry-list>li>a:hover,
-body>main>div>ul.entry-list>li>a:focus {
-	outline: none;
+body>main>ul.entry-list>li>a:hover,
+body>main>ul.entry-list>li>a:focus {
 	padding-left: 1.2em;
-}
-body>main>footer {
-	line-height: 1.5;
 }
 /*
  * Slightly modified CSS loading spinner style based on lds-ring from 

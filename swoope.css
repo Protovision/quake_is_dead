@@ -7,7 +7,7 @@
   * With 1.0 line-height, these headings will each occupy a vertical space of
   * approximately 3rem.
   */
-.swoope h1 {
+h1 {
 	/*
 	margin: 0.375rem 0;
 	font-size: 2.25rem;
@@ -15,7 +15,7 @@
 	margin: 0.166666em 0;
 	font-size: 2.25em;
 }
-.swoope h2 {
+h2 {
 	/*
 	margin: 0.525rem 0;
 	font-size: 1.95rem;
@@ -23,7 +23,7 @@
 	margin: 0.269230em 0;
 	font-size: 1.95em;
 }
-.swoope h3 {
+h3 {
 	/*
 	margin: 0.675rem 0;
 	font-size: 1.65rem;
@@ -31,7 +31,7 @@
 	margin: 0.409090em 0;
 	font-size: 1.65em;
 }
-.swoope h4 {
+h4 {
 	/*
 	margin: 0.825rem 0;
 	font-size: 1.35rem;
@@ -39,7 +39,7 @@
 	margin: 0.611111em 0;
 	font-size: 1.35em;
 }
-.swoope h5 {
+h5 {
 	/*
 	margin: 0.975rem 0;
 	font-size: 1.05rem;
@@ -47,7 +47,7 @@
 	margin: 0.923571em 0;
 	font-size: 1.05em;
 }
-.swoope h6 {
+h6 {
 	/*
 	margin: 1.125rem 0;
 	font-size: 0.75rem;
@@ -55,33 +55,33 @@
 	margin: 1.5em 0;
 	font-size: 0.75em;
 }
-.swoope blockquote {
+blockquote {
 	margin: 0.6em 1.5em;
 }
-.swoope dd {
+dd {
 	margin: 0 0 0 1.5em;
 }
-.swoope dl {
+dl {
 	margin: 0.6em 0;
 }
-.swoope figure {
+figure {
 	margin: 0.6em 1.5em;
 }
-.swoope hr {
+hr {
 	margin: 0.3em 0;
 	border: thin solid;
 }
-.swoope ol {
+ol {
 	margin: 0.6em 0;
 	padding: 0 0 0 1.5em;
 }
-.swoope p {
+p {
 	margin: 0.6em 0;
 }
-.swoope pre {
+pre {
 	margin: 0.6em 0;
 }
-.swoope ul {
+ul {
 	margin: 0.6em 0;
 	padding: 0 0 0 1.5em;
 }

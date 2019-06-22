@@ -1,11 +1,20 @@
 (() => {
 	window.addEventListener('DOMContentLoaded', (event) => {
-		const title = document.getElementById('title');
-		const content = document.getElementById('content');
-		const loading_spinner_fragment = document.createDocumentFragment();
-		const fetch_failure_fragment = document.createDocumentFragment();
+		const title = document.querySelector('body>header>h1>a');
+		const main = (() => {
+			const main = document.querySelector('body>main');
+			main.clear = async function() {
+				while (this.lastChild) {
+					this.removeChild(this.lastChild);
+				}
+			};
+			return main;
+		})();
+		const footer = document.querySelector('body>footer');
+		const transition_delay = 400;
 		let loading_spinner_timer;
-		(() => {
+		const loading_spinner_fragment = (() => {
+			const fragment = document.createDocumentFragment();
 			const b = document.createElement('b');
 			b.appendChild(document.createTextNode('Loading'));
 			const div = document.createElement('div');
@@ -13,79 +22,81 @@
 			for (let i = 0; i < 4; ++i) {
 				div.appendChild(document.createElement('div'));
 			};
-			loading_spinner_fragment.appendChild(b);
-			loading_spinner_fragment.appendChild(document.createElement('br'));
-			loading_spinner_fragment.appendChild(div);
+			fragment.appendChild(b);
+			fragment.appendChild(document.createElement('br'));
+			fragment.appendChild(div);
+			return fragment;
 		})();
-		(() => {
-			const b = document.createElement('b');
-			b.appendChild(document.createTextNode('Failed to fetch page.'));
-			fetch_failure_fragment.appendChild(b);
-		})();
-		const clear_content = async () => {
-			while (content.lastChild) {
-				content.removeChild(content.lastChild);
-			};
-		};
-		const display_loading_spinner_after = async (timeout) => {
-			if (content.classList.contains('loading')) {
-				return;
-			};
-			loading_spinner_timer = setTimeout(async () => {
-				await clear_content();
-				content.appendChild(loading_spinner_fragment);
-			}, timeout);
-			content.classList.add('loading');
-		};
-		const clear_loading_spinner = async () => {
-			if (!content.classList.contains('loading')) {
-				return;
-			};
-			clearTimeout(loading_spinner_timer);
-			await clear_content();
-			content.classList.remove('loading');
-		}
-		const navigate_index = async () => {
-			clear_content();
-			display_loading_spinner_after(300);
-			fetch('entries.json').then(async (response) => {
-				if (response.ok) {
-					json = await response.json();
-					const fragment = document.createDocumentFragment();
-					const ul = document.createElement('ul');
-					ul.classList.add("entry-list");
-					json.forEach((e) => {
-						const li = document.createElement('li');
-						const a = document.createElement('a');
-						a.href = '#' + e[0];
-						a.appendChild(document.createTextNode(e[1] + ': ' + e[2]));
-						li.appendChild(a);
-						ul.appendChild(li);
-					});
-					fragment.appendChild(ul);
-					await clear_loading_spinner();
-					content.appendChild(fragment);
-					location.hash = '';
-					scrollTo(0, 0);
-				}
+		const delay = async (ms) => {
+			await new Promise((a, r) => {
+				setTimeout(() => { a(); }, ms);
 			});
+		};
+		const delayed_fetch = async (resource, ms) => {
+			return (await Promise.all([fetch(resource), delay(ms)]))[0];
+		};
+		const hide_main_and_footer = async () => {
+			main.classList.add('hidden');
+			footer.classList.add('hidden');
+			await delay(transition_delay);
+		};
+		const show_main_and_footer = async () => {
+			main.classList.remove('hidden');
+			footer.classList.remove('hidden');
+			await delay(transition_delay);
+		};
+		const animate_out = async () => {
+			await hide_main_and_footer();
+			await main.clear();
+			loading_spinner_timer = setTimeout(async () => {
+				console.log('timeout');
+				main.classList.add('loading');
+				main.appendChild(loading_spinner_fragment.cloneNode(true));
+				await show_main_and_footer();
+			}, 300);
+		};
+		const animate_in = async (fragment) => {
+			clearTimeout(loading_spinner_timer);
+			if (main.classList.contains('loading')) {
+				await hide_main_and_footer();
+				await main.clear();
+				main.classList.remove('loading');
+			}
+			main.appendChild(fragment);
+			await show_main_and_footer();
+		};
+		const navigate_index = async () => {
+			scrollTo(0, 0);
+			await animate_out();
+			const response = await fetch('entries.json'); /*delayed_fetch('entries.json', 3000);*/
+			if (response && response.ok) {
+				const fragment = document.createDocumentFragment();
+				const ul = document.createElement('ul');
+				ul.classList.add("entry-list");
+				const json = await response.json();
+				for (const e of json) {
+					const li = document.createElement('li');
+					const a = document.createElement('a');
+					a.href = '#' + e[0];
+					a.appendChild(document.createTextNode(e[1] + ': ' + e[2]));
+					li.appendChild(a);
+					ul.appendChild(li);
+				}
+				fragment.appendChild(ul);
+				await animate_in(fragment);
+			}
 		};
 		const navigate_entry = async (filename) => {
-			clear_content();
-			display_loading_spinner_after(300);
-			fetch(filename).then(async (response) => {
-				if (response.ok) {
-					const fragment = document.createDocumentFragment();
-					const article = document.createElement('article');
-					const text = await response.text();
-					article.innerHTML = text;
-					fragment.appendChild(article);
-					await clear_loading_spinner();
-					content.appendChild(fragment);
-					location.hash = filename;
-					scrollTo(0, 0);
-				}
-			});
+			scrollTo(0, 0);
+			await animate_out();
+			const response = await fetch(filename); /*delayed_fetch(filename, 3000);*/
+			if (response && response.ok) {
+				const fragment = document.createDocumentFragment();
+				const article = document.createElement('article');
+				article.innerHTML = await response.text();
+				fragment.appendChild(article);
+				await animate_in(fragment);
+			}
 		};
 		const refresh = async () => {
 			if (location.hash.length > 2) {
@@ -94,8 +105,16 @@
 				navigate_index();
 			};
 		};
-		title.addEventListener('click', () => { location.hash = ''; });
-		window.addEventListener('hashchange', () => { refresh(); });
+		title.addEventListener('click', async () => {
+			if (location.hash != '') {
+				location.hash = '';
+			} else {
+				await navigate_index();
+			};
+		});
+		window.addEventListener('hashchange', async () => {
+			await refresh();
+		});
 		refresh();
 	});
 })();
