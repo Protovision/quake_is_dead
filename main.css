@@ -4,11 +4,13 @@
 	--foreground-color: #a0a0a0;
 	--background-color: #080808;
 	--accent-color: #a02828;
+}
+html {
+	margin-left: calc(100vw - 100%);
 	font-size: 1.125em;
 	line-height: 1.5;
 	scroll-behavior: smooth;
 }
-
 
 h1,h2,h3,h4,h5,h6 {
 	text-align: center;
