@@ -75,7 +75,7 @@
 			scrollTo(0, 0);
 			await animate_out();
 			try {
-				const response = await delayed_fetch('entries.json', 3000);
+				const response = await fetch('entries.json');
 				if (response && response.ok) {
 					const fragment = document.createDocumentFragment();
 					const ul = document.createElement('ul');
@@ -102,7 +102,7 @@
 			scrollTo(0, 0);
 			await animate_out();
 			try {
-				const response = await delayed_fetch(filename, 3000);
+				const response = await fetch(filename);
 				if (response.ok) {
 					const fragment = document.createDocumentFragment();
 					const article = document.createElement('article');
