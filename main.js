@@ -27,6 +27,13 @@
 			fragment.appendChild(div);
 			return fragment;
 		})();
+		const fetch_failed_fragment = (() => {
+			const fragment = document.createDocumentFragment();
+			const strong = document.createElement('strong');
+			strong.appendChild(document.createTextNode('Failed to load content.'));
+			fragment.appendChild(strong);
+			return fragment;
+		})();
 		const delay = async (ms) => {
 			await new Promise((a, r) => {
 				setTimeout(() => { a(); }, ms);
@@ -49,7 +56,6 @@
 			await hide_main_and_footer();
 			await main.clear();
 			loading_spinner_timer = setTimeout(async () => {
-				console.log('timeout');
 				main.classList.add('loading');
 				main.appendChild(loading_spinner_fragment.cloneNode(true));
 				await show_main_and_footer();
@@ -68,35 +74,47 @@
 		const navigate_index = async () => {
 			scrollTo(0, 0);
 			await animate_out();
-			const response = await fetch('entries.json'); /*delayed_fetch('entries.json', 3000);*/
-			if (response && response.ok) {
-				const fragment = document.createDocumentFragment();
-				const ul = document.createElement('ul');
-				ul.classList.add("entry-list");
-				const json = await response.json();
-				for (const e of json) {
-					const li = document.createElement('li');
-					const a = document.createElement('a');
-					a.href = '#' + e[0];
-					a.appendChild(document.createTextNode(e[1] + ': ' + e[2]));
-					li.appendChild(a);
-					ul.appendChild(li);
-				}
-				fragment.appendChild(ul);
-				await animate_in(fragment);
-			}
+			try {
+				const response = await delayed_fetch('entries.json', 3000);
+				if (response && response.ok) {
+					const fragment = document.createDocumentFragment();
+					const ul = document.createElement('ul');
+					ul.classList.add("entry-list");
+					const json = await response.json();
+					for (const e of json) {
+						const li = document.createElement('li');
+						const a = document.createElement('a');
+						a.href = '#' + e[0];
+						a.appendChild(document.createTextNode(e[1] + ': ' + e[2]));
+						li.appendChild(a);
+						ul.appendChild(li);
+					}
+					fragment.appendChild(ul);
+					await animate_in(fragment);
+				} else {
+					animate_in(fetch_failed_fragment.cloneNode(true));
+				};
+			} catch (e) {
+				animate_in(fetch_failed_fragment.cloneNode(true));
+			};
 		};
 		const navigate_entry = async (filename) => {
 			scrollTo(0, 0);
 			await animate_out();
-			const response = await fetch(filename); /*delayed_fetch(filename, 3000);*/
-			if (response && response.ok) {
-				const fragment = document.createDocumentFragment();
-				const article = document.createElement('article');
-				article.innerHTML = await response.text();
-				fragment.appendChild(article);
-				await animate_in(fragment);
-			}
+			try {
+				const response = await delayed_fetch(filename, 3000);
+				if (response.ok) {
+					const fragment = document.createDocumentFragment();
+					const article = document.createElement('article');
+					article.innerHTML = await response.text();
+					fragment.appendChild(article);
+					await animate_in(fragment);
+				} else {
+					animate_in(fetch_failed_fragment.cloneNode(true));
+				};
+			} catch (e) {
+				animate_in(fetch_failed_fragment.cloneNode(true));
+			};
 		};
 		const refresh = async () => {
 			if (location.hash.length > 2) {
