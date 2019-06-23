@@ -1,4 +1,7 @@
 (() => {
+	window.addEventListener('load', async (event) => {
+		document.body.classList.add('ready');
+	});
 	window.addEventListener('DOMContentLoaded', async (event) => {
 		const title = document.querySelector('body>header>h1>a');
 		const main = (() => {
@@ -12,7 +15,7 @@
 		})();
 		const footer = document.querySelector('body>footer');
 		const transition_delay = 400;
-		let loading_spinner_timer;
+		let loading_spinner_timer = null;
 		const loading_spinner_fragment = (() => {
 			const fragment = document.createDocumentFragment();
 			const b = document.createElement('b');
@@ -55,14 +58,19 @@
 		const animate_out = async () => {
 			await hide_main_and_footer();
 			await main.clear();
-			loading_spinner_timer = setTimeout(async () => {
+			if (loading_spinner_timer) {
+				clearTimeout(loading_spinner_timer);
+			};
+			loading_spinner_timer = setTimeout(() => {
 				main.classList.add('loading');
 				main.appendChild(loading_spinner_fragment.cloneNode(true));
-				await show_main_and_footer();
+				show_main_and_footer();
+				loading_spinner_timer = null;
 			}, 300);
 		};
 		const animate_in = async (fragment) => {
 			clearTimeout(loading_spinner_timer);
+			loading_spinner_timer = null;
 			if (main.classList.contains('loading')) {
 				await hide_main_and_footer();
 				await main.clear();
@@ -79,7 +87,7 @@
 				if (response && response.ok) {
 					const fragment = document.createDocumentFragment();
 					const ul = document.createElement('ul');
-					ul.classList.add("entry-list");
+					ul.classList.add('entry-list');
 					const json = await response.json();
 					for (const e of json) {
 						const li = document.createElement('li');

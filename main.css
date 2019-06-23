@@ -3,6 +3,10 @@
 	--code-font: 'Share Tech Mono', monospace;
 	--foreground-color: #a0a0a0;
 	--background-color: #080808;
+	/*
+	--foreground-color: #202020;
+	--background-color: #e0e0e0;
+	*/
 	--accent-color: #a02828;
 }
 html {
@@ -63,8 +67,12 @@ body {
 	margin: 0;
 	padding: 1.2em 0.6em;
 	color: var(--foreground-color);
-	background-color: var(--background-color);
+	background-color: initial;
 	font-family: var(--font);
+}
+body.ready {
+	opacity: 1;
+	background-color: var(--background-color);
 }
 body>header,
 body>main,
@@ -154,4 +162,3 @@ body>main>ul.entry-list>li>a:focus {
 		transform: rotate(360deg);
 	}
 }
-
