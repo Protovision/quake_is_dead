@@ -3,6 +3,26 @@
 		document.body.classList.add('ready');
 	});
 	window.addEventListener('DOMContentLoaded', async (event) => {
+		const color = document.querySelector('#color>select');
+		const apply_color = (c) => {
+			if (!c) { return; }
+			if (c == 'Black') {
+				document.documentElement.style.setProperty('--foreground-color', '#a0a0a0');
+				document.documentElement.style.setProperty('--background-color', '#080808');
+			} else if (c == 'White') {
+				document.documentElement.style.setProperty('--foreground-color', '#202020');
+				document.documentElement.style.setProperty('--background-color', '#e0e0e0');
+			} else if (c == 'Sepia') {
+				document.documentElement.style.setProperty('--foreground-color', '#202020');
+				document.documentElement.style.setProperty('--background-color', '#e8e0c8');
+			}
+			color.value = c;
+			localStorage.setItem('color', c);
+		}
+		color.addEventListener('change', (ev) => {
+			apply_color(ev.target.value);
+		});
+		apply_color(localStorage.getItem('color'));
 		const title = document.querySelector('body>header>h1>a');
 		const main = (() => {
 			const main = document.querySelector('body>main');

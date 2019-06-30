@@ -75,6 +75,23 @@ body.ready {
 	opacity: 1;
 	background-color: var(--background-color);
 }
+#color {
+	text-align: right;
+}
+#color select {
+	display: inline-block;
+	border: thin solid var(--accent-color);
+	padding: 0.3em;
+	color: inherit;
+	background-color: inherit;
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+#color select:hover,#color select:focus {
+	text-decoration: underline;
+	cursor: pointer;
+}
 body>header,
 body>main,
 body>footer {
