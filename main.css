@@ -3,11 +3,12 @@
 	--code-font: 'Share Tech Mono', monospace;
 	--foreground-color: #a0a0a0;
 	--background-color: #080808;
+	--accent-color: #a02828;
 	/*
 	--foreground-color: #202020;
 	--background-color: #e0e0e0;
+	--accent-color: #2828a0;
 	*/
-	--accent-color: #a02828;
 }
 html {
 	margin-left: calc(100vw - 100%);
