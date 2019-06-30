@@ -1,8 +1,5 @@
 (() => {
 	window.addEventListener('load', async (event) => {
-		document.body.classList.add('ready');
-	});
-	window.addEventListener('DOMContentLoaded', async (event) => {
 		const color = document.querySelector('#color>select');
 		const apply_color = (c) => {
 			if (!c) { return; }
@@ -23,6 +20,9 @@
 			apply_color(ev.target.value);
 		});
 		apply_color(localStorage.getItem('color'));
+		document.body.classList.add('ready');
+	});
+	window.addEventListener('DOMContentLoaded', async (event) => {
 		const title = document.querySelector('body>header>h1>a');
 		const main = (() => {
 			const main = document.querySelector('body>main');
