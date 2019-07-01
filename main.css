@@ -182,3 +182,10 @@ body>main>ul.entry-list>li>a:focus {
 		transform: rotate(360deg);
 	}
 }
+
+@media screen and (max-width: 51em) {
+	figure,blockquote {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}

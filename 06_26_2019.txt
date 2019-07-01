@@ -3,6 +3,7 @@
 	<blockquote>
 		<!--<p>That which hath been is now; and that which is to be hath already been; and God requireth that which is past...</p>-->
 		<p>For that which befalleth the sons of men befalleth beasts; even one thing befalleth them: as the one dieth, so dieth the other; yea, they have all one breath; so that a man hath no preeminence above a beast: for all is vanity.</p>
+	</blockquote>
 	<figcaption>King James Bible, Ecclesiastes 3:19.</figcaption>
 </figure>
 <figure>
