@@ -1,9 +1,13 @@
 (() => {
 	window.addEventListener('load', async (event) => {
 		const colorSchemes = {
-			Black: [ '#a0a0a0', '#080808' ],
-			White: [ '#202020', '#e0e0e0' ],
-			Sepia: [ '#202020', '#e8e0c8' ]
+			Black: [ '#a0a0a0', '#080808', '#a02828' ],
+			White: [ '#202020', '#e0e0e0', '#a02828' ],
+			Sepia: [ '#202020', '#e8e0c8', '#a02828' ],
+			Solarized: [ '#839496', '#002b36', '#b58900' ],
+			Dracula: [ '#f8f8f2', '#282a36', '#b890fc' ],
+			Zenburn: [ '#dcdccc', '#1f1f1f', '#f0dfaf' ], 
+			Matrix: [ '#55af66', '#000000', '#55af66' ]
 		}
 		const color = document.querySelector('#color>select');
 		const applyColorScheme = async (scheme) => {
@@ -14,9 +18,22 @@
 				colorSchemes[scheme][0]);
 			document.documentElement.style.setProperty('--background-color',
 				colorSchemes[scheme][1]);
+			document.documentElement.style.setProperty('--accent-color',
+				colorSchemes[scheme][2]);
+			if (scheme == 'Matrix') {
+				document.body.style.fontFamily = '\'Share Tech Mono\', monospace';
+			} else {
+				document.body.style.fontFamily = '\'News Cycle\', sans-serif';
+			}
 			color.value = scheme;
 			localStorage.setItem('color', scheme);
 		}
+		for (const c in colorSchemes) {
+			const option = document.createElement('option');
+			option.appendChild(document.createTextNode(c));
+			color.appendChild(option);
+		}
+		color.value = Object.keys(colorSchemes)[0];
 		color.addEventListener('change', (event) => {
 			applyColorScheme(event.target.value);
 		});
