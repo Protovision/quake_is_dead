@@ -92,9 +92,11 @@ body.ready {
 	text-decoration: underline;
 	cursor: pointer;
 }
+#color,
 body>header,
 body>main,
-body>footer {
+body>footer,
+body>noscript {
 	display: block;
 	box-sizing: border-box;
 	margin: 0 auto;
