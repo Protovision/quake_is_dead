@@ -21,6 +21,9 @@ h1,h2,h3,h4,h5,h6 {
 	text-align: center;
 	/*line-height: 1.0;*/
 }
+hr {
+	border: thin solid var(--accent-color);
+}
 blockquote {
 	border-left: thick solid var(--accent-color);
 	padding-left: 0.6em;

@@ -1,0 +1,39 @@
+<h2>A small note on SPAs</h2>
+<p>I could be talking to the wind or a history that has long past evolved already, but I am now under the impression that SPAs (single page applications) are not a bad web architecture, that they are now well supported by at least 90% of the web browsers in use, they make websites faster, they can work with no server-side code, that they are here to stay, and that all their criticism is overly pessimistic.</p>
+<p>For those who don't know, SPAs are basically a single web page that uses Javascript to fetch and update portions of the web page rather than triggering full page refreshes during navigation. SPAs typically represent and encode the current location of the web site in the fragment of the URL rather than the in path portion, so technically the web browser never navigates away from index.html. This blog is currently an SPA.</p>
+<p>Common criticisms of SPAs and why I think they are stupid:</p>
+<ul>
+	<li>
+		&ldquo;SPAs do not work on web browsers that do not support AJAX&rdquo;
+		<p>AJAX (Asynchronous JavaScript and XML) is the primary technology that JavaScript uses to fetch dynamic content. It causes the web browser to initiate an HTTP request that happens in the background with data being returned in XML or JSON format (typically JSON). The API for this technology is available through <code>XMLHttpRequest</code> or the more modern replacement <code>fetch</code>, both of which have 94% and 92% global full browser support respectively. Browsers that don't support these at all include Internet Explorer 9 (from 2011), Firefox 3 (from 2008), Chrome 6 (from 2010), and Safari 4 (from 2009). But even partial support in certain major browsers goes back as far as 2010. My argument to this is that users who are using over decade old browsers are in the extreme minority and it is their problem that they haven't updated all this time. AJAX has been around since the early 2000s and has been standardized by the W3C in 2006. Every commercial or professional web site you visit today has been using AJAX for at least 10 years now. If you're worried about users whose web browsers do not support AJAX or let alone Javascript, those users have bigger problems.</p>
+	</li>
+	<li>
+		&ldquo;SPAs do not work for users who have JavaScript disabled&rdquo;
+		<p>Again, JavaScript is even older than AJAX and to put even more work for rendering a completely static HTML-only site for the even smaller minority of users who don't have Javascript is a waste of time for the sake of pleasing perhaps less than 2% of those who don't have Javascript. Often, you will hear people say that a web site needs to be designed with <i>progressive enhancement</i> in mind. The philosophy behind progressive enhancement is: assume the user is retarded and/or has a web browser from the year 1995, then have code to check for very specific features before adding them in to enhance the experience without making that feature mandatory. The problem with this is that it raises the amount of work necessary to a ridiculous degree and certain features are just impossible to check for but have been around long enough and are supported widely enough that you can and should assume that they are there. And while it sounds nice to make the website compatible with all users, even if they run outdated web browsers or have core web technologies disabled, you end up with a slower web site (because of the feature check code) that takes up more storage space (because of the HTML-only rendered fall-back pages) which benefits no users except the ones who don't support modern web technologies. Feature checks are not inherently bad, especially for extremely new features, but having feature checks and fallback functionality for things that have been around for over 10 years and are supported by every major web browser for the past 10 years is a waste of time to make, a waste of space to store on the server, a waste of time to transfer over the network, and a waste of time to execute for the majority of users who already support the feature. The idea that Javascript should not be required for accessing a web site and should only be there to optionally enhance the experience is an outdated idea from the 90's. Javascript is required for visiting 99% of websites today and if you have it disabled, you have bigger problems.</p>
+	</li>
+	<li>
+		&ldquo;SPAs do not work well with analytics and SEO&rdquo;
+		<p>Another non-issue especially if you respect your users' privacy. I personally do not care about tracking my users' activity on the web site and I do not care if Google has trouble indexing certain pages on my site that are encoded through the hash fragment, that's their problem and they have the man-power and technology to figure that out.</p>
+		<p>Google analytics, used for tracking and collecting data on user activity in your website, which is enabled by embedded calls to their public API in your code, already has ways for working with SPAs by manually notifying them of SPA page transitions in your code; for every content fetch your code triggers, only 2 additional lines of code are needed to notify google of the page change.</p>
+		<p>SEO (search engine optimization), this is probably the only good point against SPAs right now. Search engines including Google still have trouble indexing the pages within SPAs but they have announced in 2014 that they will actually execute the SPAs in sandboxed machines and take virtual screenshots of the pages within SPAs after triggering click events on the links, though no gaurantee was made to it's success anytime soon. I believe most of the work lies on the side of search engines and enough progress is being made that this issue will go away by the mid 2020's.</p>
+	</li>
+</ul>
+<p>Myths about SPAs (or prior facts that are now not true anymore):</p>
+<ul>
+	<li>
+		&ldquo;SPAs use a lot of Javascript so they are slower than MPAs (multi-page applications)&rdquo;
+		<p>The only thing slower about SPAs is the initial load and execution time in which Javascript is downloaded and set up. After that everything is faster from the loading of dynamic content to the rendering of that content. Yes more Javascript is running, but in exchange, you have fewer DOM updates and lighter web requests that save bandwidth. Also the Javascript takes advantage of the computing and storage capabilities of the user's device so that servers have a lighter load and can deliver content faster.</p>
+	</li>
+	<li>
+		&ldquo;SPAs cannot keep track of state other than what's encoded in the hash fragment of the URL&rdquo;
+		<p>The existence of the standard localstorage and indexedDB APIs now makes this claim outdated.</p>
+	</li>
+	<li>
+		&ldquo;SPAs cannot react to or trigger browser navigation events other than detecting or setting changes in the hash fragment of the URL&rdquo;
+		<p>The standard History API now makes this claim outdated.</p>
+	</li>
+	<li>
+		&ldquo;SPAs cannot be cached properly by web browsers, making them useless when working offline&rdquo;
+		<p>Service workers and the standard Cache API now allows SPAs to run offline and makes this claim outdated.</p>
+	</li>
+</ul>
