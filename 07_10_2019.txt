@@ -37,3 +37,4 @@
 		<p>Service workers and the standard Cache API now allows SPAs to run offline and makes this claim outdated.</p>
 	</li>
 </ul>
+
