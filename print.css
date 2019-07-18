@@ -1,0 +1,25 @@
+@page {
+	margin: 0.5in;
+}
+:root {
+	margin: 0;
+}
+body {
+	margin: 0;
+	padding: 0;
+	color: #000 !important;
+	background-color: transparent !important;
+	font-size: 12pt;
+}
+#color,body>header,body>footer {
+	display: none;
+}
+body>main {
+	margin: 0;
+	border: none;
+	padding: 0;
+	max-width: auto;
+}
+p {
+	page-break-inside: avoid;
+}
