@@ -1,0 +1,48 @@
+<h2>Disfunctional programming</h2>
+<p>There is something beautiful about functional programming which makes it all the more dangerous to use for both the human mind and the computer system in the context of systems programming. Functional programming is complexity that also simplifies and generalizes the reality, it abbreviates the ugly details and seems to reveal the essence of a program's computation. It forges a pathway of the data through function composition and type alternation. But all of these things are simulated by the underlying system which must ultimately work harder to allow this type of paradigm to work. Humans must also work harder to use this paradigm since there is a tighter cohesion of the computational process and type-theory related complexity at work here. There may be fewer lines of code which give the appearance of saving time, but the contemplation time, compilation time, and execution time are all increased.</p>
+<p>A common feature in many of today's programming languages, the ability to pass aggregate types by copy into and out of functions seems so essential to a modern programming language but it is often forgotten to be an abstraction and the absurdity of the cost of this abstraction is often overlooked. I concede that there should be a way to perform a deep copy of a structure or an array, but I do not concede that this should be something that happens implicitly. For a <i>systems</i> programming language, scalar types (integers and floating-points) and aggregate types (arrays and structures) should not have equal treatment for the fact that they do not have equal treatment in the underlying assembly language. Consistency is beautiful, such as having the assignment operator always perform a copy on any type, but when it starts to contradict what is real, then it becomes less suitable for <i>real programmers</i>. As we all know, aggregates are passed by reference in the assembly code and, depending on the higher-level programming language, there may be a bulk memory copy performed to create a local copy of that object in the called function. It is an expensive operation which is why most programmers will explicitly pass aggregates by reference, unless they really need a local copy (consider how many times you see <code>const *</code> in C or <code>const &amp;</code> in C++); so it would make sense for a programming language to make aggregates be passed by reference by default and require additional syntax or an explicit statement to copy the aggregate.</p>
+<p>When it comes to returning values from a function, a language that permits aggregates to be returned have no choice but to make them return a copy of the aggregate unless the aggregate was allocated in dynamic memory. The problem with returning an aggregate from a function is that the called function must create a local copy of this aggregate and when the called function returns, the calling function must move this aggregate into it's own local storage. It is a waste of time to build up large objects in one memory location only to immediately transfer them to another memory location when control of a function switches. This is the price to pay when aggregates and scalars are treated equally when it comes function calls. It is better to simply use out-parameters so that the called function knows where to store it's aggregate results within the caller's memory.</p>
+<p>The latest trend when it comes to function calls is to muddle up everything inside tagged unions, requiring tedious syntax to "unwrap" the desired value after the call. I believe these are generally known as monads but their more specific forms are variant types whose more specific forms are optional types and result types. I was initially interested in result types as an alternative to the much worse exception handling concept. Having a result type which is a tagged union between the main return type of a function and an error type is much more transparent and organized rather than having a function have it's one normal return type plus X number of hidden return paths introduced by the X number of exception types it may throw. Another great thing about it is that one may write code as if they were handling exceptions but the underlying process will be "if there was an error, return the error" after every function call that can fail (read "herbceptions" for more details on this). I actually reject both practices. I have come to conclude that it is better to simply have the function return a status code of success or failure while having two out-parameters: one for the main result and the other for the possible error. I only want to return scalar types for function results while having out-parameters for arrays and structures: (1) for better performance and (2) because I do not want to introduce a new tagged union data type for each and every function that has a different return type and error type pair which will bloat the compile-time process.</p> 
+<p>To put into code what I just described, consider the difference between this C code and this other C++ code:</p>
+<figure>
+<pre>
+<code>
+bool&nbsp;do_something(Result&nbsp;*result,&nbsp;Error&nbsp;*error)&nbsp;{<br>
+&nbsp;&nbsp;if&nbsp;(!do_something_else(result,&nbsp;error))&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;do_something_that_cannot_fail(result);<br>
+&nbsp;&nbsp;return&nbsp;true;<br>
+}
+</code>
+</pre>
+</figure>
+<figure>
+<pre>
+<code>
+variant&lt;Result,&nbsp;Error&gt;&nbsp;do_something()&nbsp;{<br>
+&nbsp;&nbsp;variant&lt;Result,&nbsp;Error&gt;&nbsp;result&nbsp;=&nbsp;do_something_else();<br>
+&nbsp;&nbsp;if&nbsp;(holds_alternative&lt;Error&gt;(result))&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return get&lt;Error&gt;(result);<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;do_something_that_cannot_fail(get&lt;Result&gt;(result));<br>
+&nbsp;&nbsp;return get&lt;Result&gt;(result);<br>
+}
+</code>
+</pre>
+</figure>
+<figure>
+<pre>
+<code>
+Result&nbsp;do_something()&nbsp;{<br>
+&nbsp;&nbsp;Result result = do_something(); /* may throw Error! */<br>
+&nbsp;&nbsp;do_something_that_cannot_fail(result);<br>
+&nbsp;&nbsp;return result;<br>
+}
+</code>
+</pre>
+</figure>	
+<p>The code is not only more complex in the C++ version, but because the error is stored with the result in the same object, we must unwrap it every time we want to access the result to do something else with it unless we create another Result object and move it out after unwrapping but doing this would create another intermediary data transfer that could have been avoided if the error and result were stored separatedly in the first place.</p>
+<p>The third example is terrible since it hides the fact that an Error may actually be returned instead of a Result and there's no way to specify this in the syntax since exception specifications have been removed in since C++17. Also exceptions have terrible runtime consequences in several implementations (gaps and fragmentation in stack memory, instruction cache missing due to large stack unwinding, dynamic memory allocation in certain implementations).</p>
+<p>The first example is the only sane one since the called function that may fail will take care of filling out either the result object or error object directly and all the calling function has to do is propagate the false value on failure: no awkward unwrapping syntax, no intermediary move assignments, no hidden control flow. So you actually end up writing less code, doing less thinking, fighting fewer compiler rules, having a faster compile time, and having a faster running program and a smaller executable size.</p>
+<p>Because of these insights, I will incorporate no functional or object-oriented features in my new programming language.</p>
